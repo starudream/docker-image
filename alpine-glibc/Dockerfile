@@ -3,7 +3,7 @@ FROM alpine:latest AS builder
 ENV GLIBC_VERSION 2.30-r0
 
 RUN sed -i 's|http://dl-cdn.alpinelinux.org|https://mirrors.tuna.tsinghua.edu.cn|g' /etc/apk/repositories \
-    && apk add --no-cache ca-certificates tzdata wget \
+    && apk add --no-cache ca-certificates wget \
     && wget -qO /tmp/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
     && wget -qO /tmp/glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk
 
