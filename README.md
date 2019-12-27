@@ -8,8 +8,6 @@
 
 - `alpine`
 
-[![MicroBadgerSize](https://img.shields.io/microbadger/image-size/starudream/alpine)](https://hub.docker.com/r/starudream/alpine)
-
 ```bash
 docker pull starudream/alpine
 
@@ -17,8 +15,6 @@ docker pull registry.cn-shanghai.aliyuncs.com/starudream/alpine
 ```
 
 - `alpine-glibc`
-
-[![MicroBadgerSize](https://img.shields.io/microbadger/image-size/starudream/alpine-glibc)](https://hub.docker.com/r/starudream/alpine-glibc)
 
 ```bash
 docker pull starudream/alpine-glibc
