@@ -16,29 +16,9 @@ RUN apk add --no-cache nginx php7-fpm php7-session php7-json \
     && rm -rf /var/cache/apk/* \
     && mkdir -p /run/nginx /data \
     && chmod 755 -R /var/www/h5ai \
-    && sed -ri "s|'ROOT_PATH.+|'ROOT_PATH', '/data');|g" /var/www/h5ai/private/php/core/class-setup.php
-
-RUN cat >/etc/nginx/conf.d/default.conf <<EOF \
-    server { \
-      listen 80 default_server; \
-      listen [::]:80 default_server; \
-      index /public/index.php; \
-      location / { \
-        root /var/www/h5ai; \
-        location /public/index.php { \
-          fastcgi_pass 127.0.0.1:9000; \
-          fastcgi_index index.php; \
-          include fastcgi.conf; \
-        } \
-      } \
-    } \
-    EOF
-
-RUN cat >/entrypoint.sh <<EOF \
-    #!/bin/sh \
-    nohup php-fpm7 >/var/log/php-fpm7.log 2>&1 & \
-    nginx -g "daemon off;" \
-    EOF
+    && sed -ri "s|'ROOT_PATH.+|'ROOT_PATH', '/data');|g" /var/www/h5ai/private/php/core/class-setup.php \
+    && cat >/etc/nginx/conf.d/default.conf <<EOF\nserver {\nlisten 80 default_server;\nlisten [::]:80 default_server;\nindex /public/index.php;\nlocation / {\nroot /var/www/h5ai;\nlocation /public/index.php {\nfastcgi_pass 127.0.0.1:9000;\nfastcgi_index index.php;\ninclude fastcgi.conf;\n}\n}\n}EOF \
+    cat >/entrypoint.sh <<EOF\n#!/bin/sh\nnohup php-fpm7 >/var/log/php-fpm7.log 2>&1 &\nnginx -g "daemon off;"EOF
 
 EXPOSE 80
 
