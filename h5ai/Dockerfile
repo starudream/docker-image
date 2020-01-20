@@ -11,7 +11,6 @@ RUN apk add --no-cache wget zip \
 FROM starudream/alpine:latest
 
 COPY --from=builder /tmp/h5ai/_h5ai/ /var/www/h5ai
-COPY default.conf /etc/nginx/conf.d/default.conf
 
 RUN apk add --no-cache nginx php7-fpm php7-session php7-json \
     && rm -rf /var/cache/apk/* \
@@ -19,10 +18,30 @@ RUN apk add --no-cache nginx php7-fpm php7-session php7-json \
     && chmod 755 -R /var/www/h5ai \
     && sed -ri "s|'ROOT_PATH.+|'ROOT_PATH', '/data');|g" /var/www/h5ai/private/php/core/class-setup.php
 
+RUN cat >/etc/nginx/conf.d/default.conf <<EOF
+    server {
+      listen 80 default_server;
+      listen [::]:80 default_server;
+      index /public/index.php;
+      location / {
+        root /var/www/h5ai;
+        location /public/index.php {
+          fastcgi_pass 127.0.0.1:9000;
+          fastcgi_index index.php;
+          include fastcgi.conf;
+        }
+      }
+    }
+    EOF
+
+RUN cat >/entrypoint.sh <<EOF
+    #!/bin/sh
+    nohup php-fpm7 >/var/log/php-fpm7.log 2>&1 &
+    nginx -g "daemon off;"
+    EOF
+
 EXPOSE 80
 
 VOLUME /data
-
-COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
