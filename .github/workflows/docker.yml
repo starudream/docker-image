@@ -14,6 +14,8 @@ jobs:
         run: |
           for d in $(ls); do
             if [ -d "${d}" ]; then
-              docker build . --file "${d}/Dockerfile"
+              cd "${d}"
+              docker build .
+              cd ..
             fi
           done
