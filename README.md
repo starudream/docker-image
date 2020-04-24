@@ -1,6 +1,6 @@
 # Docker Image
 
-![License](https://img.shields.io/badge/license-Apache%20License%202.0-blue)
+![License](https://img.shields.io/badge/License-Apache%20License%202.0-blue)
 
 ## Usage
 
