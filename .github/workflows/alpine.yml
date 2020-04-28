@@ -4,6 +4,7 @@ on:
     branches:
       - master
     paths:
+      - '.github/workflows/alpine.yml'
       - 'alpine/**'
   schedule:
     - cron: '0 0 * * *'

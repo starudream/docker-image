@@ -4,6 +4,7 @@ on:
     branches:
       - master
     paths:
+      - '.github/workflows/h5ai.yml'
       - 'h5ai/**'
   schedule:
     - cron: '0 2 * * *'
