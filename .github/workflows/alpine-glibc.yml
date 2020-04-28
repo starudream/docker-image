@@ -1,10 +1,10 @@
 name: alpine-glibc
 on:
   push:
-    path:
-      - 'alpine-glibc/**'
     branches:
       - master
+    paths:
+      - 'alpine-glibc/**'
   schedule:
     - cron: '0 1 * * *'
 jobs:

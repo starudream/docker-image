@@ -1,10 +1,10 @@
 name: h5ai
 on:
   push:
-    path:
-      - 'h5ai/**'
     branches:
       - master
+    paths:
+      - 'h5ai/**'
   schedule:
     - cron: '0 2 * * *'
 jobs:

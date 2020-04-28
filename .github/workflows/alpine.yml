@@ -1,10 +1,10 @@
 name: alpine
 on:
   push:
-    path:
-      - 'alpine/**'
     branches:
       - master
+    paths:
+      - 'alpine/**'
   schedule:
     - cron: '0 0 * * *'
 jobs:
