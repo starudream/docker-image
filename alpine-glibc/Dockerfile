@@ -1,6 +1,6 @@
 FROM alpine:latest AS builder
 
-ENV GLIBC_VERSION 2.30-r0
+ENV GLIBC_VERSION 2.31-r0
 
 RUN sed -i 's|http://dl-cdn.alpinelinux.org|https://mirrors.tuna.tsinghua.edu.cn|g' /etc/apk/repositories \
     && apk add --no-cache ca-certificates wget \

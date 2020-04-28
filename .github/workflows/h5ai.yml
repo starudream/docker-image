@@ -1,0 +1,24 @@
+name: h5ai
+on:
+  push:
+    path:
+      - 'h5ai/**'
+    branches:
+      - master
+  schedule:
+    - cron: '0 2 * * *'
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Build
+        run: |
+          cd h5ai
+          echo "${{secrets.DOCKER_TOKEN}}" | docker login -u starudream --password-stdin
+          docker build -t starudream/h5ai:latest .
+          docker push starudream/h5ai:latest
