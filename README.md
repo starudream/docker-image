@@ -6,7 +6,7 @@
 
 - `alpine`
 
-![Build](https://img.shields.io/docker/cloud/build/starudream/alpine)
+![Build](https://github.com/starudream/docker-image/workflows/alpine/badge.svg)
 ![Version](https://img.shields.io/docker/v/starudream/alpine)
 ![Size](https://img.shields.io/docker/image-size/starudream/alpine/latest)
 ![Pull](https://img.shields.io/docker/pulls/starudream/alpine)
@@ -17,7 +17,7 @@ docker pull starudream/alpine
 
 - `alpine-glibc`
 
-![Build](https://img.shields.io/docker/cloud/build/starudream/alpine-glibc)
+![Build](https://github.com/starudream/docker-image/workflows/alpine-glibc/badge.svg)
 ![Version](https://img.shields.io/docker/v/starudream/alpine-glibc)
 ![Size](https://img.shields.io/docker/image-size/starudream/alpine-glibc/latest)
 ![Pull](https://img.shields.io/docker/pulls/starudream/alpine-glibc)
@@ -28,7 +28,7 @@ docker pull starudream/alpine-glibc
 
 - `h5ai`
 
-![Build](https://img.shields.io/docker/cloud/build/starudream/h5ai)
+![Build](https://github.com/starudream/docker-image/workflows/h5ai/badge.svg)
 ![Version](https://img.shields.io/docker/v/starudream/h5ai)
 ![Size](https://img.shields.io/docker/image-size/starudream/h5ai/latest)
 ![Pull](https://img.shields.io/docker/pulls/starudream/h5ai)
