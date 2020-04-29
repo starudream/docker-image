@@ -20,7 +20,6 @@ RUN apk add --no-cache nginx php7-fpm php7-session php7-json \
 
 RUN echo $'server {\n\
   listen 80 default_server;\n\
-  listen [::]:80 default_server;\n\
   index /public/index.php;\n\
   location / {\n\
     root /var/www/h5ai;\n\
