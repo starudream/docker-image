@@ -26,6 +26,44 @@ docker pull starudream/alpine
 docker pull starudream/alpine-glibc
 ```
 
+- `frpc`
+
+![Build](https://github.com/starudream/docker-image/workflows/frpc/badge.svg)
+![Version](https://img.shields.io/docker/v/starudream/frpc)
+![Size](https://img.shields.io/docker/image-size/starudream/frpc/latest)
+![Pull](https://img.shields.io/docker/pulls/starudream/frpc)
+
+```bash
+docker pull starudream/frpc
+```
+
+```bash
+docker run -d \
+    --name frpc \
+    --restart always \
+    -v /opt/docker/frpc/frpc.ini:/frpc.ini \
+    starudream/frpc:latest
+```
+
+- `frps`
+
+![Build](https://github.com/starudream/docker-image/workflows/frps/badge.svg)
+![Version](https://img.shields.io/docker/v/starudream/frps)
+![Size](https://img.shields.io/docker/image-size/starudream/frps/latest)
+![Pull](https://img.shields.io/docker/pulls/starudream/frps)
+
+```bash
+docker pull starudream/frps
+```
+
+```bash
+docker run -d \
+    --name frps \
+    --restart always \
+    -v /opt/docker/frps/frps.ini:/frps.ini \
+    starudream/frps:latest
+```
+
 - `h5ai`
 
 ![Build](https://github.com/starudream/docker-image/workflows/h5ai/badge.svg)
@@ -38,7 +76,12 @@ docker pull starudream/h5ai
 ```
 
 ```bash
-docker run -d -p 80:80 -v /home/username:/data starudream/h5ai
+docker run -d \
+    --name h5ai \
+    --restart always \
+    -p 80:80 \
+    -v /home/username:/data \
+    starudream/h5ai:latest
 ```
 
 ## License

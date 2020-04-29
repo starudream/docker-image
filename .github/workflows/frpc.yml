@@ -1,0 +1,25 @@
+name: frpc
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/frpc.yml'
+      - 'frpc/**'
+  schedule:
+    - cron: '0 2 * * *'
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Build
+        run: |
+          cd frpc
+          echo "${{secrets.DOCKER_TOKEN}}" | docker login -u starudream --password-stdin
+          docker build -t starudream/frpc:latest .
+          docker push starudream/frpc:latest
