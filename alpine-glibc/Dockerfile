@@ -1,9 +1,8 @@
-FROM alpine:latest AS builder
+FROM starudream/alpine:latest AS builder
 
 ENV GLIBC_VERSION 2.31-r0
 
-RUN sed -i 's|http://dl-cdn.alpinelinux.org|https://mirrors.tuna.tsinghua.edu.cn|g' /etc/apk/repositories \
-    && apk add --no-cache ca-certificates wget \
+RUN apk add --no-cache wget \
     && wget -qO /tmp/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
     && wget -qO /tmp/glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk
 
