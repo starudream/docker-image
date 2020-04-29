@@ -41,6 +41,7 @@ docker pull starudream/frpc
 docker run -d \
     --name frpc \
     --restart always \
+    -p 7000:7000 \
     -v /opt/docker/frpc/frpc.ini:/frpc.ini \
     starudream/frpc:latest
 ```
@@ -60,6 +61,7 @@ docker pull starudream/frps
 docker run -d \
     --name frps \
     --restart always \
+    -p 7000:7000 \
     -v /opt/docker/frps/frps.ini:/frps.ini \
     starudream/frps:latest
 ```
