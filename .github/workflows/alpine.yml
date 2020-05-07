@@ -10,7 +10,6 @@ on:
     - cron: '0 0 * * *'
 env:
   USERNAME: starudream
-  REPOSITORY: ${{secrets.GITHUB_REPOSITORY}}
   DOCKER_TOKEN: ${{secrets.DOCKER_TOKEN}}
   PACKAGE_TOKEN: ${{secrets.PACKAGE_TOKEN}}
   ALIYUN_DOCKER_USERNAME: ${{secrets.ALIYUN_DOCKER_USERNAME}}
@@ -25,5 +24,4 @@ jobs:
         with:
           fetch-depth: 1
       - name: Build
-        run: |
-          chmod +x build.sh && ./build.sh alpine
+        run: chmod +x build.sh && ./build.sh alpine
