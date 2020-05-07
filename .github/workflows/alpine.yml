@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/alpine.yml'
       - 'alpine/**'
+      - 'build.sh'
   schedule:
     - cron: '0 0 * * *'
 env:

@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/alpine-glibc.yml'
       - 'alpine-glibc/**'
+      - 'build.sh'
   schedule:
     - cron: '0 1 * * *'
 env:

@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+set -e
+
 NAME=$1
 
-cd "./${NAME}" || exit 1
+cd "./${NAME}"
 
 echo -e "\033[34m[ Start '${NAME}' ]\033[0m"
 

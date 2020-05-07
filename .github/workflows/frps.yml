@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/frps.yml'
       - 'frps/**'
+      - 'build.sh'
   schedule:
     - cron: '0 2 * * *'
 env:
