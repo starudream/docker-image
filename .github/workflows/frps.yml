@@ -8,6 +8,12 @@ on:
       - 'frps/**'
   schedule:
     - cron: '0 2 * * *'
+env:
+  USERNAME: starudream
+  DOCKER_TOKEN: ${{secrets.DOCKER_TOKEN}}
+  PACKAGE_TOKEN: ${{secrets.PACKAGE_TOKEN}}
+  ALIYUN_DOCKER_USERNAME: ${{secrets.ALIYUN_DOCKER_USERNAME}}
+  ALIYUN_DOCKER_TOKEN: ${{secrets.ALIYUN_DOCKER_TOKEN}}
 jobs:
   build:
     name: Build
@@ -18,8 +24,4 @@ jobs:
         with:
           fetch-depth: 1
       - name: Build
-        run: |
-          cd frps
-          echo "${{secrets.DOCKER_TOKEN}}" | docker login -u starudream --password-stdin
-          docker build -t starudream/frps:latest .
-          docker push starudream/frps:latest
+        run: chmod +x build.sh && ./build.sh frps

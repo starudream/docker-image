@@ -8,6 +8,12 @@ on:
       - 'h5ai/**'
   schedule:
     - cron: '0 2 * * *'
+env:
+  USERNAME: starudream
+  DOCKER_TOKEN: ${{secrets.DOCKER_TOKEN}}
+  PACKAGE_TOKEN: ${{secrets.PACKAGE_TOKEN}}
+  ALIYUN_DOCKER_USERNAME: ${{secrets.ALIYUN_DOCKER_USERNAME}}
+  ALIYUN_DOCKER_TOKEN: ${{secrets.ALIYUN_DOCKER_TOKEN}}
 jobs:
   build:
     name: Build
@@ -18,8 +24,4 @@ jobs:
         with:
           fetch-depth: 1
       - name: Build
-        run: |
-          cd h5ai
-          echo "${{secrets.DOCKER_TOKEN}}" | docker login -u starudream --password-stdin
-          docker build -t starudream/h5ai:latest .
-          docker push starudream/h5ai:latest
+        run: chmod +x build.sh && ./build.sh h5ai
