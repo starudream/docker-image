@@ -95,6 +95,23 @@ docker run -d \
     starudream/h5ai:latest
 ```
 
+- `kubectl`
+
+![Build](https://github.com/starudream/docker-image/workflows/kubectl/badge.svg)
+![Version](https://img.shields.io/docker/v/starudream/kubectl)
+![Size](https://img.shields.io/docker/image-size/starudream/kubectl/latest)
+![Pull](https://img.shields.io/docker/pulls/starudream/kubectl)
+
+```bash
+docker pull starudream/kubectl
+docker pull docker.pkg.github.com/starudream/docker-image/kubectl:latest
+docker pull registry.cn-shanghai.aliyuncs.com/starudream/kubectl:latest
+```
+
+```bash
+docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:latest
+```
+
 ## License
 
 [Apache License 2.0](./LICENSE)
