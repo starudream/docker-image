@@ -1,12 +1,12 @@
-FROM starudream/alpine:latest AS builder
+FROM starudream/alpine AS builder
 
-ENV GLIBC_VERSION 2.31-r0
+ENV GLIBC_VERSION 2.32-r0
 
 RUN apk add --no-cache wget \
     && wget -qO /tmp/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
     && wget -qO /tmp/glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk
 
-FROM starudream/alpine:latest
+FROM starudream/alpine
 
 COPY --from=builder /tmp/sgerrand.rsa.pub /etc/apk/keys/sgerrand.rsa.pub
 COPY --from=builder /tmp/glibc.apk /tmp/glibc.apk

@@ -1,13 +1,13 @@
-FROM starudream/alpine:latest AS builder
+FROM starudream/alpine AS builder
 
-ENV KUBECTL_VERSION 1.18.2
+ENV KUBECTL_VERSION 1.18.8
 
 RUN apk add --no-cache curl wget upx \
     && wget -qO /tmp/kubectl https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
     && chmod +x /tmp/kubectl \
-    && upx -9 -q /tmp/kubectl
+    && upx /tmp/kubectl
 
-FROM starudream/alpine:latest
+FROM starudream/alpine
 
 COPY --from=builder /tmp/kubectl /usr/bin/kubectl
 

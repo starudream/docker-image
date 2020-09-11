@@ -1,0 +1,66 @@
+name: Docker
+on:
+  - push
+env:
+  USERNAME: starudream
+  DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+  PACKAGE_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
+jobs:
+  alpine:
+    name: alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: bash build.sh alpine
+  alpine-glibc:
+    name: alpine-glibc
+    runs-on: ubuntu-latest
+    needs:
+      - alpine
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: bash build.sh alpine-glibc
+  frpc:
+    name: frpc
+    runs-on: ubuntu-latest
+    needs:
+      - alpine-glibc
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: bash build.sh frpc
+  frps:
+    name: frps
+    runs-on: ubuntu-latest
+    needs:
+      - alpine-glibc
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: bash build.sh frps
+  h5ai:
+    name: h5ai
+    runs-on: ubuntu-latest
+    needs:
+      - alpine
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: bash build.sh h5ai
+  kubectl:
+    name: kubectl
+    runs-on: ubuntu-latest
+    needs:
+      - alpine
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: bash build.sh kubectl

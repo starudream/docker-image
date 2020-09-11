@@ -1,4 +1,4 @@
-FROM starudream/alpine:latest AS builder
+FROM starudream/alpine AS builder
 
 ENV H5AI_VERSION 0.29.2
 ENV H5AI_MD5 5cfe8ea94c5a4e27ee8d8117ef4d52c8
@@ -8,7 +8,7 @@ RUN apk add --no-cache wget zip \
     && echo ${H5AI_MD5}'  /tmp/h5ai.zip' | md5sum -c - \
     && unzip -q /tmp/h5ai.zip -d /tmp/h5ai
 
-FROM starudream/alpine:latest
+FROM starudream/alpine
 
 COPY --from=builder /tmp/h5ai/_h5ai/ /var/www/h5ai
 
