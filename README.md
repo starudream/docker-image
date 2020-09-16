@@ -1,12 +1,12 @@
 # Docker Image
 
+![Docker](https://github.com/starudream/docker-image/workflows/Docker/badge.svg?branch=master)
 ![License](https://img.shields.io/badge/License-Apache%20License%202.0-blue)
 
 ## Usage
 
 - `alpine`
 
-![Build](https://github.com/starudream/docker-image/workflows/alpine/badge.svg)
 ![Version](https://img.shields.io/docker/v/starudream/alpine)
 ![Size](https://img.shields.io/docker/image-size/starudream/alpine/latest)
 ![Pull](https://img.shields.io/docker/pulls/starudream/alpine)
@@ -17,7 +17,6 @@ docker pull starudream/alpine
 
 - `alpine-glibc`
 
-![Build](https://github.com/starudream/docker-image/workflows/alpine-glibc/badge.svg)
 ![Version](https://img.shields.io/docker/v/starudream/alpine-glibc)
 ![Size](https://img.shields.io/docker/image-size/starudream/alpine-glibc/latest)
 ![Pull](https://img.shields.io/docker/pulls/starudream/alpine-glibc)
@@ -28,7 +27,6 @@ docker pull starudream/alpine-glibc
 
 - `frpc`
 
-![Build](https://github.com/starudream/docker-image/workflows/frpc/badge.svg)
 ![Version](https://img.shields.io/docker/v/starudream/frpc)
 ![Size](https://img.shields.io/docker/image-size/starudream/frpc/latest)
 ![Pull](https://img.shields.io/docker/pulls/starudream/frpc)
@@ -47,7 +45,6 @@ docker run -d \
 
 - `frps`
 
-![Build](https://github.com/starudream/docker-image/workflows/frps/badge.svg)
 ![Version](https://img.shields.io/docker/v/starudream/frps)
 ![Size](https://img.shields.io/docker/image-size/starudream/frps/latest)
 ![Pull](https://img.shields.io/docker/pulls/starudream/frps)
@@ -67,7 +64,6 @@ docker run -d \
 
 - `h5ai`
 
-![Build](https://github.com/starudream/docker-image/workflows/h5ai/badge.svg)
 ![Version](https://img.shields.io/docker/v/starudream/h5ai)
 ![Size](https://img.shields.io/docker/image-size/starudream/h5ai/latest)
 ![Pull](https://img.shields.io/docker/pulls/starudream/h5ai)
@@ -87,7 +83,6 @@ docker run -d \
 
 - `kubectl`
 
-![Build](https://github.com/starudream/docker-image/workflows/kubectl/badge.svg)
 ![Version](https://img.shields.io/docker/v/starudream/kubectl)
 ![Size](https://img.shields.io/docker/image-size/starudream/kubectl/latest)
 ![Pull](https://img.shields.io/docker/pulls/starudream/kubectl)
@@ -102,7 +97,6 @@ docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:
 
 - `ssr-speed`
 
-![Build](https://github.com/starudream/docker-image/workflows/ssr-speed/badge.svg)
 ![Version](https://img.shields.io/docker/v/starudream/ssr-speed)
 ![Size](https://img.shields.io/docker/image-size/starudream/ssr-speed/latest)
 ![Pull](https://img.shields.io/docker/pulls/starudream/ssr-speed)
