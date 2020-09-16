@@ -13,8 +13,6 @@
 
 ```bash
 docker pull starudream/alpine
-docker pull docker.pkg.github.com/starudream/docker-image/alpine:latest
-docker pull registry.cn-shanghai.aliyuncs.com/starudream/alpine:latest
 ```
 
 - `alpine-glibc`
@@ -26,8 +24,6 @@ docker pull registry.cn-shanghai.aliyuncs.com/starudream/alpine:latest
 
 ```bash
 docker pull starudream/alpine-glibc
-docker pull docker.pkg.github.com/starudream/docker-image/alpine-glibc:latest
-docker pull registry.cn-shanghai.aliyuncs.com/starudream/alpine-glibc:latest
 ```
 
 - `frpc`
@@ -39,8 +35,6 @@ docker pull registry.cn-shanghai.aliyuncs.com/starudream/alpine-glibc:latest
 
 ```bash
 docker pull starudream/frpc
-docker pull docker.pkg.github.com/starudream/docker-image/frpc:latest
-docker pull registry.cn-shanghai.aliyuncs.com/starudream/frpc:latest
 ```
 
 ```bash
@@ -60,8 +54,6 @@ docker run -d \
 
 ```bash
 docker pull starudream/frps
-docker pull docker.pkg.github.com/starudream/docker-image/frps:latest
-docker pull registry.cn-shanghai.aliyuncs.com/starudream/frps:latest
 ```
 
 ```bash
@@ -82,8 +74,6 @@ docker run -d \
 
 ```bash
 docker pull starudream/h5ai
-docker pull docker.pkg.github.com/starudream/docker-image/h5ai:latest
-docker pull registry.cn-shanghai.aliyuncs.com/starudream/h5ai:latest
 ```
 
 ```bash
@@ -104,8 +94,21 @@ docker run -d \
 
 ```bash
 docker pull starudream/kubectl
-docker pull docker.pkg.github.com/starudream/docker-image/kubectl:latest
-docker pull registry.cn-shanghai.aliyuncs.com/starudream/kubectl:latest
+```
+
+```bash
+docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:latest
+```
+
+- `ssr-speed`
+
+![Build](https://github.com/starudream/docker-image/workflows/ssr-speed/badge.svg)
+![Version](https://img.shields.io/docker/v/starudream/ssr-speed)
+![Size](https://img.shields.io/docker/image-size/starudream/ssr-speed/latest)
+![Pull](https://img.shields.io/docker/pulls/starudream/ssr-speed)
+
+```bash
+docker pull starudream/ssr-speed
 ```
 
 ```bash
