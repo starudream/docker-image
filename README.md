@@ -25,6 +25,26 @@ docker pull starudream/alpine
 docker pull starudream/alpine-glibc
 ```
 
+- `clash`
+
+![Version](https://img.shields.io/docker/v/starudream/clash)
+![Size](https://img.shields.io/docker/image-size/starudream/clash/latest)
+![Pull](https://img.shields.io/docker/pulls/starudream/clash)
+
+```bash
+docker pull starudream/clash
+```
+
+```bash
+docker run -d \
+    --name clash \
+    --restart always \
+    -p 7890:7890 \
+    -p 9090:9090 \
+    -v /opt/docker/clash/config.yaml:/root/.config/clash/config.yaml \
+    starudream/clash:latest
+```
+
 - `frpc`
 
 ![Version](https://img.shields.io/docker/v/starudream/frpc)
