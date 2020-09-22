@@ -1,7 +1,7 @@
 FROM python:3.8.5
 
-ENV LIBSODIUM_VERSION 1.0.18
-ENV SSR_SPEED_VERSION 2.7.2
+ARG LIBSODIUM_VERSION=1.0.18
+ARG SSR_SPEED_VERSION=2.7.3
 
 RUN cd /tmp \
     && sed -i 's|deb.debian.org|mirrors.aliyun.com|g' /etc/apt/sources.list \

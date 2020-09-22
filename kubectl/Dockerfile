@@ -1,6 +1,6 @@
 FROM starudream/alpine AS builder
 
-ENV KUBECTL_VERSION 1.18.8
+ARG KUBECTL_VERSION=1.18.9
 
 RUN apk add --no-cache curl wget upx \
     && wget -qO /tmp/kubectl https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
