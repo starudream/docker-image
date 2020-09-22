@@ -1,15 +1,15 @@
 # Docker Image
 
-![Docker](https://github.com/starudream/docker-image/workflows/Docker/badge.svg?branch=master)
-![License](https://img.shields.io/badge/License-Apache%20License%202.0-blue)
+![Docker](https://img.shields.io/github/workflow/status/starudream/docker-image/Docker/master?style=for-the-badge)
+![License](https://img.shields.io/badge/License-Apache%20License%202.0-blue?style=for-the-badge)
 
 ## Usage
 
 - `alpine`
 
-![Version](https://img.shields.io/docker/v/starudream/alpine)
-![Size](https://img.shields.io/docker/image-size/starudream/alpine/latest)
-![Pull](https://img.shields.io/docker/pulls/starudream/alpine)
+![Version](https://img.shields.io/docker/v/starudream/alpine?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/alpine/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/alpine?style=for-the-badge)
 
 ```bash
 docker pull starudream/alpine
@@ -17,9 +17,9 @@ docker pull starudream/alpine
 
 - `alpine-glibc`
 
-![Version](https://img.shields.io/docker/v/starudream/alpine-glibc)
-![Size](https://img.shields.io/docker/image-size/starudream/alpine-glibc/latest)
-![Pull](https://img.shields.io/docker/pulls/starudream/alpine-glibc)
+![Version](https://img.shields.io/docker/v/starudream/alpine-glibc?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/alpine-glibc/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/alpine-glibc?style=for-the-badge)
 
 ```bash
 docker pull starudream/alpine-glibc
@@ -27,9 +27,9 @@ docker pull starudream/alpine-glibc
 
 - `clash`
 
-![Version](https://img.shields.io/docker/v/starudream/clash)
-![Size](https://img.shields.io/docker/image-size/starudream/clash/latest)
-![Pull](https://img.shields.io/docker/pulls/starudream/clash)
+![Version](https://img.shields.io/docker/v/starudream/clash?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/clash/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/clash?style=for-the-badge)
 
 ```bash
 docker pull starudream/clash
@@ -47,9 +47,9 @@ docker run -d \
 
 - `frpc`
 
-![Version](https://img.shields.io/docker/v/starudream/frpc)
-![Size](https://img.shields.io/docker/image-size/starudream/frpc/latest)
-![Pull](https://img.shields.io/docker/pulls/starudream/frpc)
+![Version](https://img.shields.io/docker/v/starudream/frpc?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/frpc/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/frpc?style=for-the-badge)
 
 ```bash
 docker pull starudream/frpc
@@ -65,9 +65,9 @@ docker run -d \
 
 - `frps`
 
-![Version](https://img.shields.io/docker/v/starudream/frps)
-![Size](https://img.shields.io/docker/image-size/starudream/frps/latest)
-![Pull](https://img.shields.io/docker/pulls/starudream/frps)
+![Version](https://img.shields.io/docker/v/starudream/frps?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/frps/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/frps?style=for-the-badge)
 
 ```bash
 docker pull starudream/frps
@@ -84,9 +84,9 @@ docker run -d \
 
 - `h5ai`
 
-![Version](https://img.shields.io/docker/v/starudream/h5ai)
-![Size](https://img.shields.io/docker/image-size/starudream/h5ai/latest)
-![Pull](https://img.shields.io/docker/pulls/starudream/h5ai)
+![Version](https://img.shields.io/docker/v/starudream/h5ai?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/h5ai/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/h5ai?style=for-the-badge)
 
 ```bash
 docker pull starudream/h5ai
@@ -103,9 +103,9 @@ docker run -d \
 
 - `kubectl`
 
-![Version](https://img.shields.io/docker/v/starudream/kubectl)
-![Size](https://img.shields.io/docker/image-size/starudream/kubectl/latest)
-![Pull](https://img.shields.io/docker/pulls/starudream/kubectl)
+![Version](https://img.shields.io/docker/v/starudream/kubectl?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/kubectl/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/kubectl?style=for-the-badge)
 
 ```bash
 docker pull starudream/kubectl
@@ -117,9 +117,9 @@ docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:
 
 - `ssr-speed`
 
-![Version](https://img.shields.io/docker/v/starudream/ssr-speed)
-![Size](https://img.shields.io/docker/image-size/starudream/ssr-speed/latest)
-![Pull](https://img.shields.io/docker/pulls/starudream/ssr-speed)
+![Version](https://img.shields.io/docker/v/starudream/ssr-speed?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/ssr-speed/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/ssr-speed?style=for-the-badge)
 
 ```bash
 docker pull starudream/ssr-speed
