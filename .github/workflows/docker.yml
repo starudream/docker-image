@@ -74,11 +74,3 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         run: bash build.sh kubectl
-  ssr-speed:
-    name: ssr-speed
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Build
-        run: bash build.sh ssr-speed

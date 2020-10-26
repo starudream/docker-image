@@ -115,20 +115,6 @@ docker pull starudream/kubectl
 docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:latest
 ```
 
-- `ssr-speed`
-
-![Version](https://img.shields.io/docker/v/starudream/ssr-speed?style=for-the-badge)
-![Size](https://img.shields.io/docker/image-size/starudream/ssr-speed/latest?style=for-the-badge)
-![Pull](https://img.shields.io/docker/pulls/starudream/ssr-speed?style=for-the-badge)
-
-```bash
-docker pull starudream/ssr-speed
-```
-
-```bash
-docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:latest
-```
-
 ## License
 
 [Apache License 2.0](./LICENSE)
