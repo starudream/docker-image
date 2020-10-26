@@ -24,6 +24,22 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         run: bash build.sh alpine-glibc
+  baidu-su:
+    name: baidu-su
+    runs-on: ubuntu-latest
+    needs:
+      - alpine-glibc
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: starudream/baidu-su
+          path: baidu-su
+          token: ${{ secrets.PAGE_PAT }}
+      - name: Build
+        run: bash build.sh baidu-su
   clash:
     name: clash
     runs-on: ubuntu-latest
@@ -34,6 +50,38 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         run: bash build.sh clash
+  clash-speedtest:
+    name: clash-speedtest
+    runs-on: ubuntu-latest
+    needs:
+      - alpine-glibc
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: starudream/clash-speedtest
+          path: clash-speedtest
+          token: ${{ secrets.PAGE_PAT }}
+      - name: Build
+        run: bash build.sh clash-speedtest
+  cronjob:
+    name: cronjob
+    runs-on: ubuntu-latest
+    needs:
+      - alpine-glibc
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: starudream/cronjob
+          path: cronjob
+          token: ${{ secrets.PAGE_PAT }}
+      - name: Build
+        run: bash build.sh cronjob
   frpc:
     name: frpc
     runs-on: ubuntu-latest
