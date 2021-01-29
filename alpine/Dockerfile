@@ -1,4 +1,4 @@
-FROM alpine:3.12.3
+FROM alpine:3.13.1
 
 RUN sed -i 's|http://dl-cdn.alpinelinux.org|https://mirrors.aliyun.com|g' /etc/apk/repositories \
     && apk add --no-cache ca-certificates tzdata \

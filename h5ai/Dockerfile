@@ -1,7 +1,7 @@
 FROM starudream/alpine AS builder
 
-ARG H5AI_VERSION=0.29.2
-ARG H5AI_MD5=5cfe8ea94c5a4e27ee8d8117ef4d52c8
+ARG H5AI_VERSION=0.30.0
+ARG H5AI_MD5=efcc3150648cfb5b22a2b2106e2c5b7f
 
 RUN apk add --no-cache wget zip \
     && wget -qO /tmp/h5ai.zip https://release.larsjung.de/h5ai/h5ai-${H5AI_VERSION}.zip \
