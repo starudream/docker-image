@@ -1,6 +1,6 @@
 FROM starudream/alpine AS builder
 
-ARG GLIBC_VERSION=2.32-r0
+ARG GLIBC_VERSION=2.33-r0
 
 RUN apk add --no-cache wget \
     && wget -qO /tmp/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
