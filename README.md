@@ -82,6 +82,16 @@ docker run -d \
     starudream/frps:latest
 ```
 
+- `golang`
+
+![Version](https://img.shields.io/docker/v/starudream/golang?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/golang/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/golang?style=for-the-badge)
+
+```bash
+docker pull starudream/golang
+```
+
 - `h5ai`
 
 ![Version](https://img.shields.io/docker/v/starudream/h5ai?style=for-the-badge)
