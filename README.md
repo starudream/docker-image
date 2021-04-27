@@ -135,6 +135,26 @@ docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:
 docker pull starudream/ubuntu
 ```
 
+- `zerotier`
+
+![Version](https://img.shields.io/docker/v/starudream/zerotier?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/zerotier/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/zerotier?style=for-the-badge)
+
+```bash
+docker pull starudream/zerotier
+```
+
+```bash
+docker run -d \
+    --name zerotier \
+    --restart always \
+    --device=/dev/net/tun \
+    --net=host \
+    -v /opt/docker/zerotier:/var/lib/zerotier-one \
+    starudream/zerotier:latest
+```
+
 ## License
 
 [Apache License 2.0](./LICENSE)
