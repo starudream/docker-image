@@ -125,6 +125,16 @@ docker pull starudream/kubectl
 docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:latest
 ```
 
+- `ubuntu`
+
+![Version](https://img.shields.io/docker/v/starudream/ubuntu?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/ubuntu/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/ubuntu?style=for-the-badge)
+
+```bash
+docker pull starudream/ubuntu
+```
+
 ## License
 
 [Apache License 2.0](./LICENSE)
