@@ -1,6 +1,6 @@
 FROM starudream/alpine AS builder
 
-ARG CLASH_PREMIUM_VERSION=2021.04.08
+ARG CLASH_PREMIUM_VERSION=2021.05.08
 
 RUN apk add --no-cache wget upx \
     && wget -qO /tmp/Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb \
@@ -14,5 +14,7 @@ WORKDIR /
 
 COPY --from=builder /tmp/Country.mmdb /root/.config/clash/Country.mmdb
 COPY --from=builder /tmp/clash /clash
+
+EXPOSE 7890 9090
 
 CMD /clash

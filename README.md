@@ -45,6 +45,25 @@ docker run -d \
     starudream/clash:latest
 ```
 
+- `dwyl-hits`
+
+![Version](https://img.shields.io/docker/v/starudream/dwyl-hits?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/dwyl-hits/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/dwyl-hits?style=for-the-badge)
+
+```bash
+docker pull starudream/dwyl-hits
+```
+
+```bash
+docker run -d \
+    --name dwyl-hits \
+    --restart always \
+    -p 8000:8000 \
+    -v /opt/docker/hits/logs:/app/logs \
+    starudream/dwyl-hits:latest
+```
+
 - `frpc`
 
 ![Version](https://img.shields.io/docker/v/starudream/frpc?style=for-the-badge)
