@@ -14,7 +14,7 @@ COPY --from=builder /tmp/h5ai/_h5ai/ /var/www/h5ai
 
 RUN apk add --no-cache nginx php7-fpm php7-session php7-json \
     && rm -rf /var/cache/apk/* \
-    && mkdir -p /run/nginx /data \
+    && mkdir -p /etc/nginx/conf.d/ /run/nginx /data \
     && chmod 755 -R /var/www/h5ai \
     && sed -ri "s|'ROOT_PATH.+|'ROOT_PATH', '/data');|g" /var/www/h5ai/private/php/core/class-setup.php
 
