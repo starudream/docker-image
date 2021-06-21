@@ -67,6 +67,16 @@ jobs:
           token: ${{ secrets.PAGE_PAT }}
       - name: Build
         run: bash build.sh clash-speedtest
+  dwyl-hits:
+    name: dwyl-hits
+    runs-on: ubuntu-latest
+    needs:
+      - alpine-glibc
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: bash build.sh dwyl-hits
   cronjob:
     name: cronjob
     runs-on: ubuntu-latest
