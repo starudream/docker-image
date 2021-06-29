@@ -144,6 +144,26 @@ docker pull starudream/kubectl
 docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:latest
 ```
 
+- `npc`
+
+![Version](https://img.shields.io/docker/v/starudream/npc?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/npc/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/npc?style=for-the-badge)
+
+```bash
+docker pull starudream/npc
+```
+
+- `nps`
+
+![Version](https://img.shields.io/docker/v/starudream/nps?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/nps/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/nps?style=for-the-badge)
+
+```bash
+docker pull starudream/nps
+```
+
 - `ubuntu`
 
 ![Version](https://img.shields.io/docker/v/starudream/ubuntu?style=for-the-badge)
