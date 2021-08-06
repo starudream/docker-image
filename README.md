@@ -144,6 +144,16 @@ docker pull starudream/kubectl
 docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:latest
 ```
 
+- `node`
+
+![Version](https://img.shields.io/docker/v/starudream/node?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/node/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/node?style=for-the-badge)
+
+```bash
+docker pull starudream/node
+```
+
 - `npc`
 
 ![Version](https://img.shields.io/docker/v/starudream/npc?style=for-the-badge)
