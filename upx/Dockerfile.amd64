@@ -4,7 +4,7 @@ ARG UPX_VERSION=3.96
 
 RUN apk add --no-cache wget \
     && wget -qO /tmp/upx.tar.xz https://github.com/upx/upx/releases/download/v${UPX_VERSION}/upx-${UPX_VERSION}-amd64_linux.tar.xz \
-    && tar zxf /tmp/upx.tar.xz && mv /tmp/upx-${UPX_VERSION}-amd64_linux/upx /tmp/upx && chmod +x /tmp/upx
+    && tar Jxf /tmp/upx.tar.xz -C /tmp && mv /tmp/upx-${UPX_VERSION}-amd64_linux/upx /tmp/upx && chmod +x /tmp/upx
 
 FROM starudream/alpine-glibc
 
