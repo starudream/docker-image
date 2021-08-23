@@ -11,19 +11,11 @@
 ![Size](https://img.shields.io/docker/image-size/starudream/alpine/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/alpine?style=for-the-badge)
 
-```bash
-docker pull starudream/alpine
-```
-
 - `alpine-glibc`
 
 ![Version](https://img.shields.io/docker/v/starudream/alpine-glibc?style=for-the-badge)
 ![Size](https://img.shields.io/docker/image-size/starudream/alpine-glibc/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/alpine-glibc?style=for-the-badge)
-
-```bash
-docker pull starudream/alpine-glibc
-```
 
 - `clash`
 
@@ -31,38 +23,11 @@ docker pull starudream/alpine-glibc
 ![Size](https://img.shields.io/docker/image-size/starudream/clash/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/clash?style=for-the-badge)
 
-```bash
-docker pull starudream/clash
-```
-
-```bash
-docker run -d \
-    --name clash \
-    --restart always \
-    -p 7890:7890 \
-    -p 9090:9090 \
-    -v /opt/docker/clash/config.yaml:/root/.config/clash/config.yaml \
-    starudream/clash:latest
-```
-
 - `dwyl-hits`
 
 ![Version](https://img.shields.io/docker/v/starudream/dwyl-hits?style=for-the-badge)
 ![Size](https://img.shields.io/docker/image-size/starudream/dwyl-hits/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/dwyl-hits?style=for-the-badge)
-
-```bash
-docker pull starudream/dwyl-hits
-```
-
-```bash
-docker run -d \
-    --name dwyl-hits \
-    --restart always \
-    -p 8000:8000 \
-    -v /opt/docker/hits/logs:/app/logs \
-    starudream/dwyl-hits:latest
-```
 
 - `frpc`
 
@@ -70,36 +35,11 @@ docker run -d \
 ![Size](https://img.shields.io/docker/image-size/starudream/frpc/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/frpc?style=for-the-badge)
 
-```bash
-docker pull starudream/frpc
-```
-
-```bash
-docker run -d \
-    --name frpc \
-    --restart always \
-    -v /opt/docker/frpc/frpc.ini:/frpc.ini \
-    starudream/frpc:latest
-```
-
 - `frps`
 
 ![Version](https://img.shields.io/docker/v/starudream/frps?style=for-the-badge)
 ![Size](https://img.shields.io/docker/image-size/starudream/frps/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/frps?style=for-the-badge)
-
-```bash
-docker pull starudream/frps
-```
-
-```bash
-docker run -d \
-    --name frps \
-    --restart always \
-    -p 7000:7000 \
-    -v /opt/docker/frps/frps.ini:/frps.ini \
-    starudream/frps:latest
-```
 
 - `golang`
 
@@ -107,28 +47,11 @@ docker run -d \
 ![Size](https://img.shields.io/docker/image-size/starudream/golang/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/golang?style=for-the-badge)
 
-```bash
-docker pull starudream/golang
-```
-
 - `h5ai`
 
 ![Version](https://img.shields.io/docker/v/starudream/h5ai?style=for-the-badge)
 ![Size](https://img.shields.io/docker/image-size/starudream/h5ai/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/h5ai?style=for-the-badge)
-
-```bash
-docker pull starudream/h5ai
-```
-
-```bash
-docker run -d \
-    --name h5ai \
-    --restart always \
-    -p 80:80 \
-    -v /home/username:/data \
-    starudream/h5ai:latest
-```
 
 - `kubectl`
 
@@ -136,23 +59,11 @@ docker run -d \
 ![Size](https://img.shields.io/docker/image-size/starudream/kubectl/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/kubectl?style=for-the-badge)
 
-```bash
-docker pull starudream/kubectl
-```
-
-```bash
-docker run -it --rm -v /root/.kube/config:/root/.kube/config starudream/kubectl:latest
-```
-
 - `node`
 
 ![Version](https://img.shields.io/docker/v/starudream/node?style=for-the-badge)
 ![Size](https://img.shields.io/docker/image-size/starudream/node/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/node?style=for-the-badge)
-
-```bash
-docker pull starudream/node
-```
 
 - `npc`
 
@@ -160,19 +71,11 @@ docker pull starudream/node
 ![Size](https://img.shields.io/docker/image-size/starudream/npc/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/npc?style=for-the-badge)
 
-```bash
-docker pull starudream/npc
-```
-
 - `nps`
 
 ![Version](https://img.shields.io/docker/v/starudream/nps?style=for-the-badge)
 ![Size](https://img.shields.io/docker/image-size/starudream/nps/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/nps?style=for-the-badge)
-
-```bash
-docker pull starudream/nps
-```
 
 - `ubuntu`
 
@@ -180,29 +83,11 @@ docker pull starudream/nps
 ![Size](https://img.shields.io/docker/image-size/starudream/ubuntu/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/ubuntu?style=for-the-badge)
 
-```bash
-docker pull starudream/ubuntu
-```
-
 - `zerotier`
 
 ![Version](https://img.shields.io/docker/v/starudream/zerotier?style=for-the-badge)
 ![Size](https://img.shields.io/docker/image-size/starudream/zerotier/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/zerotier?style=for-the-badge)
-
-```bash
-docker pull starudream/zerotier
-```
-
-```bash
-docker run -d \
-    --name zerotier \
-    --restart always \
-    --device=/dev/net/tun \
-    --net=host \
-    -v /opt/docker/zerotier:/var/lib/zerotier-one \
-    starudream/zerotier:latest
-```
 
 ## License
 
