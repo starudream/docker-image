@@ -3,8 +3,8 @@ FROM starudream/alpine AS builder
 ARG GLIBC_VERSION=2.33-r0
 
 RUN apk add --no-cache wget \
-    && wget -qO /tmp/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
-    && wget -qO /tmp/glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk
+    && wget -qO /tmp/glibc.rsa.pub https://github.com/SatoshiPortal/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/cyphernode@satoshiportal.com.rsa.pub \
+    && wget -qO /tmp/glibc.apk https://github.com/SatoshiPortal/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}-aarch64.apk
 
 FROM starudream/alpine
 
