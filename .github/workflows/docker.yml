@@ -26,7 +26,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   alpine-glibc:
     runs-on: ubuntu-latest
@@ -53,7 +53,7 @@ jobs:
           platforms: linux/amd64
           file: ${{ github.job }}/Dockerfile.amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
       - name: Build and Push
         uses: docker/build-push-action@v2
         with:
@@ -61,7 +61,7 @@ jobs:
           platforms: linux/arm64
           file: ${{ github.job }}/Dockerfile.arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   baidu-su:
     runs-on: ubuntu-latest
@@ -92,7 +92,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   clash:
     runs-on: ubuntu-latest
@@ -119,7 +119,7 @@ jobs:
           platforms: linux/amd64
           file: ${{ github.job }}/Dockerfile.amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
       - name: Build and Push
         uses: docker/build-push-action@v2
         with:
@@ -127,7 +127,7 @@ jobs:
           platforms: linux/arm64
           file: ${{ github.job }}/Dockerfile.arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   clash-speedtest:
     runs-on: ubuntu-latest
@@ -158,7 +158,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   dwyl-hits:
     runs-on: ubuntu-latest
@@ -182,7 +182,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   cronjob:
     runs-on: ubuntu-latest
@@ -213,7 +213,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   frpc:
     runs-on: ubuntu-latest
@@ -239,7 +239,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   frps:
     runs-on: ubuntu-latest
@@ -265,7 +265,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   golang:
     runs-on: ubuntu-latest
@@ -289,7 +289,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   h5ai:
     runs-on: ubuntu-latest
@@ -315,7 +315,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   kubectl:
     runs-on: ubuntu-latest
@@ -341,7 +341,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   node:
     runs-on: ubuntu-latest
@@ -367,7 +367,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   npc:
     runs-on: ubuntu-latest
@@ -393,7 +393,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   nps:
     runs-on: ubuntu-latest
@@ -419,7 +419,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   ubuntu:
     runs-on: ubuntu-latest
@@ -443,7 +443,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   upx:
     runs-on: ubuntu-latest
@@ -470,7 +470,7 @@ jobs:
           platforms: linux/amd64
           file: ${{ github.job }}/Dockerfile.amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
       - name: Build and Push
         uses: docker/build-push-action@v2
         with:
@@ -478,7 +478,7 @@ jobs:
           platforms: linux/arm64
           file: ${{ github.job }}/Dockerfile.arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
 
   zerotier:
     runs-on: ubuntu-latest
@@ -504,4 +504,4 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
