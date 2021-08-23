@@ -1,4 +1,4 @@
-FROM starudream/alpine AS builder
+FROM starudream/alpine-glibc AS builder
 
 ARG ZEROTIER_VERSION=1.6.5
 
@@ -7,7 +7,7 @@ RUN apk add --no-cache alpine-sdk linux-headers \
     && cd build \
     && make -f make-linux.mk
 
-FROM starudream/alpine
+FROM starudream/alpine-glibc
 
 RUN apk add --no-cache libc6-compat libstdc++
 

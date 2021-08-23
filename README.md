@@ -17,6 +17,12 @@
 ![Size](https://img.shields.io/docker/image-size/starudream/alpine-glibc/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/alpine-glibc?style=for-the-badge)
 
+- `alpine-glibc-upx`
+
+![Version](https://img.shields.io/docker/v/starudream/alpine-glibc-upx?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/alpine-glibc-upx/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/alpine-glibc-upx?style=for-the-badge)
+
 - `clash`
 
 ![Version](https://img.shields.io/docker/v/starudream/clash?style=for-the-badge)
@@ -82,6 +88,12 @@
 ![Version](https://img.shields.io/docker/v/starudream/ubuntu?style=for-the-badge)
 ![Size](https://img.shields.io/docker/image-size/starudream/ubuntu/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/ubuntu?style=for-the-badge)
+
+- `upx`
+
+![Version](https://img.shields.io/docker/v/starudream/upx?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/upx/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/upx?style=for-the-badge)
 
 - `zerotier`
 

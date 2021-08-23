@@ -1,8 +1,8 @@
-FROM starudream/alpine AS builder
+FROM starudream/alpine-glibc-upx AS builder
 
 ARG NPS_VERSION=0.26.10
 
-RUN apk add --no-cache wget upx \
+RUN apk add --no-cache wget \
     && wget -qO /tmp/nps.tar.gz https://github.com/ehang-io/nps/releases/download/v${NPS_VERSION}/linux_amd64_server.tar.gz \
     && tar zxf /tmp/nps.tar.gz -C /tmp \
     && upx /tmp/nps

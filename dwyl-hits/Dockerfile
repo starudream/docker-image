@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM starudream/node
 
 WORKDIR app
 

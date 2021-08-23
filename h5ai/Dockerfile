@@ -1,4 +1,4 @@
-FROM starudream/alpine AS builder
+FROM starudream/alpine-glibc AS builder
 
 ARG H5AI_VERSION=0.30.0
 ARG H5AI_MD5=efcc3150648cfb5b22a2b2106e2c5b7f
