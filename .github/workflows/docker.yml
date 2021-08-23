@@ -32,11 +32,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - alpine
-    strategy:
-      matrix:
-        platform:
-          - amd64
-          - arm64
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -55,8 +50,16 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ${{ github.job }}
-          platforms: linux/${{ matrix.platform }}
-          file: ${{ github.job }}/Dockerfile.${{ matrix.platform }}
+          platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile.amd64
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
+          push: true
+      - name: Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ github.job }}
+          platforms: linux/arm64
+          file: ${{ github.job }}/Dockerfile.arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: true
 
@@ -95,11 +98,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - alpine-glibc
-    strategy:
-      matrix:
-        platform:
-          - amd64
-          - arm64
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -118,8 +116,16 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ${{ github.job }}
-          platforms: linux/${{ matrix.platform }}
-          file: ${{ github.job }}/Dockerfile.${{ matrix.platform }}
+          platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile.amd64
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
+          push: true
+      - name: Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ github.job }}
+          platforms: linux/arm64
+          file: ${{ github.job }}/Dockerfile.arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: true
 
@@ -443,11 +449,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - alpine-glibc
-    strategy:
-      matrix:
-        platform:
-          - amd64
-          - arm64
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -466,8 +467,16 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ${{ github.job }}
-          platforms: linux/${{ matrix.platform }}
-          file: ${{ github.job }}/Dockerfile.${{ matrix.platform }}
+          platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile.amd64
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
+          push: true
+      - name: Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ github.job }}
+          platforms: linux/arm64
+          file: ${{ github.job }}/Dockerfile.arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: true
 
