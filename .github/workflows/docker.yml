@@ -24,9 +24,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ${{ github.job }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   alpine-glibc:
     runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   baidu-su:
     runs-on: ubuntu-latest
@@ -83,7 +83,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   clash:
     runs-on: ubuntu-latest
@@ -109,7 +109,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   clash-speedtest:
     runs-on: ubuntu-latest
@@ -140,7 +140,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   dwyl-hits:
     runs-on: ubuntu-latest
@@ -164,7 +164,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   cronjob:
     runs-on: ubuntu-latest
@@ -195,7 +195,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   frpc:
     runs-on: ubuntu-latest
@@ -221,7 +221,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   frps:
     runs-on: ubuntu-latest
@@ -247,7 +247,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   golang:
     runs-on: ubuntu-latest
@@ -271,7 +271,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   h5ai:
     runs-on: ubuntu-latest
@@ -297,7 +297,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   kubectl:
     runs-on: ubuntu-latest
@@ -323,7 +323,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   node:
     runs-on: ubuntu-latest
@@ -349,7 +349,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   npc:
     runs-on: ubuntu-latest
@@ -375,7 +375,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   nps:
     runs-on: ubuntu-latest
@@ -401,7 +401,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   ubuntu:
     runs-on: ubuntu-latest
@@ -425,7 +425,7 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
 
   zerotier:
     runs-on: ubuntu-latest
@@ -451,4 +451,4 @@ jobs:
           context: ${{ github.job }}
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: false
+          push: true
