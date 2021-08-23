@@ -1,0 +1,13 @@
+FROM starudream/alpine AS builder
+
+ARG UPX_VERSION=3.96
+
+RUN apk add --no-cache wget \
+    && wget -qO /tmp/upx.tar.xz https://github.com/upx/upx/releases/download/v${UPX_VERSION}/upx-${UPX_VERSION}-amd64_linux.tar.xz \
+    && tar zxf /tmp/upx.tar.xz && cd upx-${UPX_VERSION}-amd64_linux && chmod +x /tmp/upx
+
+FROM starudream/alpine-glibc
+
+COPY --from=builder /tmp/upx /usr/bin/upx
+
+CMD upx
