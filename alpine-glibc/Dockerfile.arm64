@@ -8,7 +8,7 @@ RUN apk add --no-cache wget \
 
 FROM starudream/alpine
 
-COPY --from=builder /tmp/sgerrand.rsa.pub /etc/apk/keys/sgerrand.rsa.pub
+COPY --from=builder /tmp/glibc.rsa.pub /etc/apk/keys/glibc.rsa.pub
 COPY --from=builder /tmp/glibc.apk /tmp/glibc.apk
 
-RUN apk add /tmp/glibc.apk && rm -rf /tmp/sgerrand.rsa.pub /tmp/glibc.apk
+RUN apk add /tmp/glibc.apk && rm -rf /tmp/glibc.rsa.pub /tmp/glibc.apk
