@@ -7,7 +7,7 @@ RUN apk add --no-cache alpine-sdk linux-headers \
     && cd build \
     && make -f make-linux.mk
 
-FROM starudream/alpine-glibc
+FROM starudream/alpine
 
 RUN apk add --no-cache libc6-compat libstdc++
 

@@ -18,7 +18,7 @@ RUN apk add --no-cache wget; \
     esac; \
     wget -qO /tmp/Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb; \
     wget -qO /tmp/clash.gz https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-${clashArch}-${CLASH_PREMIUM_VERSION}.gz; \
-    gunzip /tmp/clash.gz && upx /tmp/clash && chmod +x /tmp/clash;
+    gunzip /tmp/clash.gz && chmod +x /tmp/clash && upx /tmp/clash;
 
 FROM starudream/alpine-glibc
 
