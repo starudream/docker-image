@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14.18.0-alpine
 
 RUN sed -i 's|dl-cdn.alpinelinux.org|mirrors.aliyun.com|g' /etc/apk/repositories \
     && npm config set registry=https://registry.npm.taobao.org \

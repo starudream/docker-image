@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc-upx AS builder
 
-ARG CLASH_PREMIUM_VERSION=2021.07.03
+ARG CLASH_PREMIUM_VERSION=2021.09.15
 
 RUN apk add --no-cache wget; \
     clashArch=""; \

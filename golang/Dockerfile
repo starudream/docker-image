@@ -1,4 +1,4 @@
-FROM golang:1.17.0-alpine
+FROM golang:1.17.2-alpine
 
 COPY --from=starudream/upx /usr/bin/upx /usr/bin/upx
 COPY --from=tonistiigi/xx:golang / /
