@@ -10,8 +10,8 @@ FROM starudream/alpine-glibc
 
 WORKDIR /base
 
-COPY --from=tindy2013/subconverter:0.7.1 /usr/bin/subconverter /usr/bin/subconverter
-COPY --from=tindy2013/subconverter:0.7.1 /base /base
+COPY --from=tindy2013/subconverter /usr/bin/subconverter /usr/bin/subconverter
+COPY --from=tindy2013/subconverter /base /base
 COPY --from=builder /app/dist /var/www/sub
 
 RUN apk add --no-cache nginx pcre2 libcurl yaml-cpp libevent \
