@@ -3,7 +3,7 @@ FROM starudream/node
 WORKDIR app
 
 RUN apk add --no-cache git \
-    && git clone --depth 1 --recursive https://github.com/dwyl/hits-nodejs.git /app \
+    && git clone --depth 1 --recursive https://github.com/starudream/hits-nodejs.git /app \
     && cd /app \
     && npm install
 
