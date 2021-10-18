@@ -117,7 +117,7 @@ jobs:
   clash:
     runs-on: ubuntu-latest
     needs:
-      - alpine-glibc-upx
+      - alpine-glibc
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -232,7 +232,7 @@ jobs:
   frpc:
     runs-on: ubuntu-latest
     needs:
-      - alpine-glibc-upx
+      - alpine-glibc
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -258,7 +258,7 @@ jobs:
   frps:
     runs-on: ubuntu-latest
     needs:
-      - alpine-glibc-upx
+      - alpine-glibc
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -283,8 +283,6 @@ jobs:
 
   golang:
     runs-on: ubuntu-latest
-    needs:
-      - upx
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -337,7 +335,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - alpine-glibc
-      - alpine-glibc-upx
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -411,7 +408,7 @@ jobs:
   npc:
     runs-on: ubuntu-latest
     needs:
-      - alpine-glibc-upx
+      - alpine-glibc
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -437,7 +434,7 @@ jobs:
   nps:
     runs-on: ubuntu-latest
     needs:
-      - alpine-glibc-upx
+      - alpine-glibc
     steps:
       - name: Checkout
         uses: actions/checkout@v2

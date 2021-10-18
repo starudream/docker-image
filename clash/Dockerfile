@@ -1,4 +1,4 @@
-FROM starudream/alpine-glibc-upx AS builder
+FROM starudream/alpine-glibc AS builder
 
 ARG CLASH_PREMIUM_VERSION=2021.09.15
 
@@ -18,8 +18,7 @@ RUN apk add --no-cache wget; \
     esac; \
     wget -qO /tmp/Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb; \
     wget -qO /tmp/clash.gz https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-${clashArch}-${CLASH_PREMIUM_VERSION}.gz; \
-    gunzip /tmp/clash.gz && chmod +x /tmp/clash; \
-    upx -V && upx /tmp/clash || exit 0;
+    gunzip /tmp/clash.gz && chmod +x /tmp/clash;
 
 FROM starudream/alpine-glibc
 

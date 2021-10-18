@@ -1,11 +1,10 @@
-FROM starudream/alpine-glibc-upx AS builder
+FROM starudream/alpine-glibc AS builder
 
 ARG NPC_VERSION=0.26.10
 
 RUN apk add --no-cache wget \
     && wget -qO /tmp/npc.tar.gz https://github.com/ehang-io/nps/releases/download/v${NPC_VERSION}/linux_amd64_client.tar.gz \
-    && tar zxf /tmp/npc.tar.gz -C /tmp \
-    && upx /tmp/npc
+    && tar zxf /tmp/npc.tar.gz -C /tmp
 
 FROM starudream/alpine-glibc
 

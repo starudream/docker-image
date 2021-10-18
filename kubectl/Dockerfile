@@ -1,11 +1,10 @@
-FROM starudream/alpine-glibc-upx AS builder
+FROM starudream/alpine-glibc AS builder
 
 ARG KUBECTL_VERSION=1.22.2
 
 RUN apk add --no-cache wget \
     && wget -qO /tmp/kubectl https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
-    && chmod +x /tmp/kubectl \
-    && upx /tmp/kubectl
+    && chmod +x /tmp/kubectl
 
 FROM starudream/alpine
 
