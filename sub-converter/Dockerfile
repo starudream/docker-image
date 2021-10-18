@@ -1,6 +1,12 @@
 FROM tindy2013/subconverter:0.7.1 AS builder1
 
-FROM careywong/subweb AS builder2
+FROM starudream/node-12 AS builder2
+
+RUN apk add --no-cache git \
+    && git clone --depth 1 --recursive https://github.com/starudream/sub-web.git /app \
+    && cd /app \
+    && yarn install \
+    && yarn build
 
 FROM starudream/alpine-glibc
 
@@ -8,7 +14,7 @@ WORKDIR /
 
 COPY --from=builder1 /usr/bin/subconverter /usr/bin/subconverter
 COPY --from=builder1 /base /base
-COPY --from=builder2 /usr/share/nginx/html /var/www/sub
+COPY --from=builder2 /app/dist /var/www/sub
 
 RUN apk add --no-cache nginx pcre2 libcurl yaml-cpp libevent \
     && rm -rf /var/cache/apk/* \
@@ -20,9 +26,8 @@ RUN echo $'server {\n\
   index index.html;\n\
   location / {\n\
     root /var/www/sub;\n\
-    location /sub {\n\
-      proxy_pass http://127.0.0.1:25500;\n\
-    }\n\
+    location /sub { proxy_pass http://127.0.0.1:25500; }\n\
+    location /version { proxy_pass http://127.0.0.1:25500; }\n\
   }\n\
 }' >/etc/nginx/http.d/default.conf
 

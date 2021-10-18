@@ -1,4 +1,4 @@
-FROM starudream/node
+FROM starudream/node-14
 
 WORKDIR app
 

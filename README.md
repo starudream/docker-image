@@ -65,11 +65,17 @@
 ![Size](https://img.shields.io/docker/image-size/starudream/kubectl/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/kubectl?style=for-the-badge)
 
-- `node`
+- `node-12`
 
-![Version](https://img.shields.io/docker/v/starudream/node?style=for-the-badge)
-![Size](https://img.shields.io/docker/image-size/starudream/node/latest?style=for-the-badge)
-![Pull](https://img.shields.io/docker/pulls/starudream/node?style=for-the-badge)
+![Version](https://img.shields.io/docker/v/starudream/node-12?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/node-12/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/node-12?style=for-the-badge)
+
+- `node-14`
+
+![Version](https://img.shields.io/docker/v/starudream/node-14?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/node-14/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/node-14?style=for-the-badge)
 
 - `npc`
 
