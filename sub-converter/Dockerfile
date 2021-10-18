@@ -30,7 +30,7 @@ RUN echo $'server {\n\
 }' >/etc/nginx/http.d/default.conf
 
 RUN echo $'#!/bin/sh\n\
-nohup subconverter -f /base/pref.ini >/var/log/subconverter.log 2>&1 &\n\
+nohup subconverter >/var/log/subconverter.log 2>&1 &\n\
 nginx -g "daemon off;"' >/entrypoint.sh
 
 EXPOSE 80
