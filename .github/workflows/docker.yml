@@ -522,6 +522,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
@@ -533,9 +535,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Check if Files Changed
+        id: changes
+        run: |
+          if [ $(git diff --name-only HEAD^ HEAD | grep "${{ github.job }}" | wc -l) -gt 0 ]; then
+            echo "::set-output name=FILE_CHANGED::true"
+          else
+            echo "::set-output name=FILE_CHANGED::false"
+          fi
       - name: Build and Push
         uses: docker/build-push-action@v2
-        if: ${{ false }}
+        if: ${{ steps.changes.outputs.FILE_CHANGED == 'true' }}
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64
