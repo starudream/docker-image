@@ -568,3 +568,9 @@ jobs:
           platforms: linux/amd64
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+
+#  update-hub-desc:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Update DockerHub Description
+#        run: for d in $(ls); do if [ -d "${d}" ]; then bash update-hub-desc.sh ${d}; fi done
