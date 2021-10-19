@@ -3,6 +3,11 @@ name: Docker
 on:
   - push
 
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+
 jobs:
   alpine:
     runs-on: ubuntu-latest
