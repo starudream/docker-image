@@ -30,6 +30,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -116,6 +117,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -174,6 +176,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -200,6 +203,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -231,6 +235,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -257,6 +262,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -283,6 +289,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -309,6 +316,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -335,6 +343,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -361,6 +370,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -385,6 +395,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -409,6 +420,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -435,6 +447,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -461,6 +474,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -488,6 +502,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -512,6 +527,7 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
@@ -538,7 +554,7 @@ jobs:
       - name: Check if Files Changed
         id: changes
         run: |
-          if [ $(git diff --name-only HEAD^ HEAD | grep "${{ github.job }}" | wc -l) -gt 0 ]; then
+          if [ $(git diff --name-only HEAD^ HEAD | grep "^${{ github.job }}/" | wc -l) -gt 0 ]; then
             echo "::set-output name=FILE_CHANGED::true"
           else
             echo "::set-output name=FILE_CHANGED::false"
@@ -576,11 +592,6 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64
+          file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
-
-#  update-hub-desc:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Update DockerHub Description
-#        run: for d in $(ls); do if [ -d "${d}" ]; then bash update-hub-desc.sh ${d}; fi done
