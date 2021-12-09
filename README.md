@@ -89,6 +89,12 @@
 ![Size](https://img.shields.io/docker/image-size/starudream/nps/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/nps?style=for-the-badge)
 
+- `pan-index`
+
+![Version](https://img.shields.io/docker/v/starudream/pan-index?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/starudream/pan-index/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/starudream/pan-index?style=for-the-badge)
+
 - `sub-converter`
 
 ![Version](https://img.shields.io/docker/v/starudream/sub-converter?style=for-the-badge)
