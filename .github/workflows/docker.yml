@@ -213,33 +213,6 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
 
-  dwyl-hits:
-    runs-on: ubuntu-latest
-    needs:
-      - node-14
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-        with:
-          platforms: all
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
-      - name: Build and Push
-        uses: docker/build-push-action@v2
-        with:
-          context: ${{ github.job }}
-          platforms: linux/amd64
-          file: ${{ github.job }}/Dockerfile
-          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
-          push: ${{ github.event_name != 'pull_request' }}
-
   cronjob:
     runs-on: ubuntu-latest
     needs:
@@ -268,6 +241,33 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          file: ${{ github.job }}/Dockerfile
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
+          push: ${{ github.event_name != 'pull_request' }}
+
+  dwyl-hits:
+    runs-on: ubuntu-latest
+    needs:
+      - node-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ github.job }}
+          platforms: linux/amd64
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
@@ -628,6 +628,38 @@ jobs:
         with:
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64
+          file: ${{ github.job }}/Dockerfile
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
+          push: ${{ github.event_name != 'pull_request' }}
+
+  webhook-forward:
+    runs-on: ubuntu-latest
+    needs:
+      - alpine-glibc
+      - golang
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: starudream/${{ github.job }}
+          path: ${{ github.job }}
+          token: ${{ secrets.PAGE_PAT }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ github.job }}
+          platforms: linux/amd64,linux/arm64
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
