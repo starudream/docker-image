@@ -29,12 +29,6 @@
 ![Size](https://img.shields.io/docker/image-size/starudream/clash/latest?style=for-the-badge)
 ![Pull](https://img.shields.io/docker/pulls/starudream/clash?style=for-the-badge)
 
-- `dwyl-hits`
-
-![Version](https://img.shields.io/docker/v/starudream/dwyl-hits?style=for-the-badge)
-![Size](https://img.shields.io/docker/image-size/starudream/dwyl-hits/latest?style=for-the-badge)
-![Pull](https://img.shields.io/docker/pulls/starudream/dwyl-hits?style=for-the-badge)
-
 - `frpc`
 
 ![Version](https://img.shields.io/docker/v/starudream/frpc?style=for-the-badge)
