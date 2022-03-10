@@ -1,10 +1,6 @@
 FROM starudream/node-12 AS builder
 
-RUN apk add --no-cache git \
-    && git clone --depth 1 --recursive https://github.com/starudream/sub-web.git /app \
-    && cd /app \
-    && yarn install \
-    && yarn build
+RUN apk add --no-cache git && git clone --depth 1 --recursive https://github.com/starudream/subconverter-web.git /app
 
 FROM starudream/alpine-glibc
 
