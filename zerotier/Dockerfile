@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc AS builder
 
-ARG ZEROTIER_VERSION=1.8.4
+ARG ZEROTIER_VERSION=1.8.7
 
 RUN apk add --no-cache alpine-sdk linux-headers \
     && git clone --depth 1 --recursive --branch ${ZEROTIER_VERSION} https://github.com/zerotier/ZeroTierOne.git /build \

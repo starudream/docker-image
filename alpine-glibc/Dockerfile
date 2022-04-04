@@ -1,16 +1,14 @@
 FROM starudream/alpine AS builder
 
-ARG GLIBC_VERSION=2.33-r0
-
 RUN apk add --no-cache wget; \
     glibcURL=""; \
     apkArch=$(apk --print-arch); \
     case ${apkArch} in \
     'x86_64') \
-        glibcURL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk"; \
+        glibcURL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r0/glibc-2.35-r0.apk"; \
       ;; \
     'aarch64') \
-        glibcURL="https://github.com/SatoshiPortal/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}-aarch64.apk"; \
+        glibcURL="https://github.com/SatoshiPortal/alpine-pkg-glibc/releases/download/2.33-r0/glibc-2.33-r0-aarch64.apk"; \
       ;; \
     *) \
         echo "unsupported architecture ${apkArch}"; exit 1; \
