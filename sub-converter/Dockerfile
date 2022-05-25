@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc AS builder
 
-RUN apk add --no-cache git && git clone --depth 1 --recursive https://github.com/starudream/subconverter-web.git /app
+RUN apk add --no-cache git && git clone --depth 1 --recursive https://github.com/starudream/sub-web.git /app
 
 FROM starudream/alpine-glibc
 
