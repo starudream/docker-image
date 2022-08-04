@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc-upx AS builder1
 
-ARG CLASH_PREMIUM_VERSION=2022.06.19
+ARG CLASH_PREMIUM_VERSION=2022.07.07
 
 RUN apk add --no-cache wget; \
     clashArch=""; \
@@ -23,7 +23,7 @@ RUN apk add --no-cache wget; \
 
 FROM starudream/alpine-glibc AS builder2
 
-ARG YACD_VERSION=0.3.5
+ARG YACD_VERSION=0.3.6
 
 RUN apk add --no-cache wget xz \
     && wget -qO /tmp/yacd.tar.xz https://github.com/haishanh/yacd/releases/download/v${YACD_VERSION}/yacd.tar.xz \
