@@ -492,7 +492,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ${{ github.job }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
