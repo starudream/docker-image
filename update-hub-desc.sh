@@ -13,11 +13,11 @@ if [ -z "${REPOSITORY}" ]; then
 fi
 
 DEFAULT_README="
-# alpine
+# ${REPOSITORY}
 
-![Version](https://img.shields.io/docker/v/${DOCKER_USERNAME}/${REPOSITORY}?style=for-the-badge)
-![Size](https://img.shields.io/docker/image-size/${DOCKER_USERNAME}/${REPOSITORY}/latest?style=for-the-badge)
-![Pull](https://img.shields.io/docker/pulls/${DOCKER_USERNAME}/${REPOSITORY}?style=for-the-badge)
+![Version](https://img.shields.io/docker/v/${REPOSITORY}?style=for-the-badge)
+![Size](https://img.shields.io/docker/image-size/${REPOSITORY}/latest?style=for-the-badge)
+![Pull](https://img.shields.io/docker/pulls/${REPOSITORY}?style=for-the-badge)
 
 ## Source
 
@@ -44,7 +44,7 @@ if [ -z "${TOKEN}" ]; then
 fi
 
 _repository_req=$(jq -nc --arg registry "${DOCKER_REGISTRY}" --arg full_description "${DEFAULT_README}" '{$registry, $full_description}')
-_repository_resp=$(curl -sL -X PATCH -H "${DOCKER_REQUEST_HEADER}" -H "Authorization: Bearer ${TOKEN}" -d "${_repository_req}" "${DOCKER_API}/repositories/${DOCKER_USERNAME}/${REPOSITORY}/")
+_repository_resp=$(curl -sL -X PATCH -H "${DOCKER_REQUEST_HEADER}" -H "Authorization: Bearer ${TOKEN}" -d "${_repository_req}" "${DOCKER_API}/repositories/${REPOSITORY}/")
 
 NAME=$(echo "${_repository_resp}" | jq -r '.name')
 
