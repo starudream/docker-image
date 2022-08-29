@@ -12,7 +12,7 @@ FROM starudream/alpine
 
 COPY --from=builder /tmp/h5ai/_h5ai/ /var/www/h5ai
 
-RUN apk add --no-cache nginx php7-fpm php7-session php7-json \
+RUN apk add --no-cache nginx php8-fpm php8-session php8-json \
     && rm -rf /var/cache/apk/* \
     && mkdir -p /etc/nginx/http.d/ /run/nginx /data \
     && chmod 755 -R /var/www/h5ai \
@@ -32,7 +32,7 @@ RUN echo $'server {\n\
 }' >/etc/nginx/http.d/default.conf
 
 RUN echo $'#!/bin/sh\n\
-nohup php-fpm7 >/var/log/php-fpm7.log 2>&1 &\n\
+nohup php-fpm8 >/var/log/php-fpm8.log 2>&1 &\n\
 nginx -g "daemon off;"' >/entrypoint.sh
 
 EXPOSE 80
