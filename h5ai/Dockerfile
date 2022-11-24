@@ -12,7 +12,7 @@ FROM starudream/alpine
 
 COPY --from=builder /tmp/h5ai/_h5ai/ /var/www/h5ai
 
-RUN apk add --no-cache nginx php8-fpm php8-session php8-json \
+RUN apk add --no-cache nginx php81-fpm php81-session php81-json \
     && rm -rf /var/cache/apk/* \
     && mkdir -p /etc/nginx/http.d/ /run/nginx /data \
     && chmod 755 -R /var/www/h5ai \

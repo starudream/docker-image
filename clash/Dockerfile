@@ -23,7 +23,7 @@ RUN apk add --no-cache wget; \
 
 FROM starudream/alpine-glibc AS builder2
 
-ARG YACD_VERSION=0.3.6
+ARG YACD_VERSION=0.3.8
 
 RUN apk add --no-cache wget xz \
     && wget -qO /tmp/yacd.tar.xz https://github.com/haishanh/yacd/releases/download/v${YACD_VERSION}/yacd.tar.xz \
