@@ -1,6 +1,4 @@
-FROM golang:1.19-alpine
-
-COPY --from=tonistiigi/xx:golang / /
+FROM golang:1.19-alpine3.17
 
 RUN sed -i 's|dl-cdn.alpinelinux.org|mirrors.tuna.tsinghua.edu.cn|g' /etc/apk/repositories \
     && apk add --no-cache ca-certificates tzdata make git upx \
