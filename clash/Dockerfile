@@ -10,7 +10,7 @@ RUN apk add --no-cache wget; \
         clashArch="amd64"; \
       ;; \
     'aarch64') \
-        clashArch="armv8"; \
+        clashArch="arm64"; \
       ;; \
     *) \
         echo "unsupported architecture ${apkArch}"; exit 1; \
