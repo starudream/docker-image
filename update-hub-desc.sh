@@ -15,9 +15,8 @@ fi
 DEFAULT_README="
 # ${REPOSITORY}
 
-![Version](https://img.shields.io/docker/v/${REPOSITORY}?style=for-the-badge)
-![Size](https://img.shields.io/docker/image-size/${REPOSITORY}/latest?style=for-the-badge)
-![Pull](https://img.shields.io/docker/pulls/${REPOSITORY}?style=for-the-badge)
+![Docker](https://img.shields.io/github/actions/workflow/status/starudream/docker-image/docker.yml?label=docker&style=for-the-badge)
+![License](https://img.shields.io/github/license/starudream/docker-image?style=for-the-badge)
 
 ## Source
 
