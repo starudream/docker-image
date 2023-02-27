@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc-upx AS builder
 
-ARG FRP_VERSION=0.46.1
+ARG FRP_VERSION=0.47.0
 
 RUN apk add --no-cache wget \
     && wget -qO /tmp/frp.tar.gz https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_amd64.tar.gz \
