@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc-upx AS builder1
 
-ARG CLASH_PREMIUM_VERSION=2023.02.16
+ARG CLASH_PREMIUM_VERSION=2023.03.04
 
 RUN apk add --no-cache wget \
     && wget -qO /tmp/Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb \
