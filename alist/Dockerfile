@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc-upx AS builder
 
-ARG ALIST_VERSION=3.14.0
+ARG ALIST_VERSION=3.15.0
 
 RUN apk add --no-cache wget \
     && wget -qO /tmp/alist.tar.gz https://github.com/alist-org/alist/releases/download/v${ALIST_VERSION}/alist-linux-musl-amd64.tar.gz \
