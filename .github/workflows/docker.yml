@@ -138,7 +138,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ${{ github.job }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
@@ -452,7 +452,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ${{ github.job }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}

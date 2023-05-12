@@ -2,9 +2,19 @@ FROM starudream/alpine-glibc-upx AS builder1
 
 ARG CLASH_PREMIUM_VERSION=2023.04.16
 
-RUN apk add --no-cache wget \
+RUN case $(apk --print-arch) in \
+    'x86_64') \
+      export __ARCH='amd64'; \
+      ;; \
+    'aarch64') \
+      export __ARCH='arm64'; \
+      ;; \
+    *) \
+      echo "Unsupported architecture: $(apk --print-arch)" && exit 1; \
+    esac \
+    && apk add --no-cache wget \
     && wget -qO /tmp/Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb \
-    && wget -qO /tmp/clash.gz https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-amd64-${CLASH_PREMIUM_VERSION}.gz \
+    && wget -qO /tmp/clash.gz https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-${__ARCH}-${CLASH_PREMIUM_VERSION}.gz \
     && gunzip /tmp/clash.gz && chmod +x /tmp/clash \
     && upx /tmp/clash
 
