@@ -17,11 +17,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -36,17 +36,19 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   alpine:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -61,6 +63,8 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   alpine-glibc:
     runs-on: ubuntu-latest
@@ -69,11 +73,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -88,6 +92,8 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   alpine-glibc-upx:
     runs-on: ubuntu-latest
@@ -96,11 +102,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -115,6 +121,8 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   clash:
     runs-on: ubuntu-latest
@@ -123,11 +131,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -142,17 +150,19 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   debian:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -167,6 +177,8 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   frpc:
     runs-on: ubuntu-latest
@@ -175,11 +187,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -194,6 +206,8 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   frps:
     runs-on: ubuntu-latest
@@ -202,11 +216,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -221,17 +235,19 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   golang:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -246,6 +262,8 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   h5ai:
     runs-on: ubuntu-latest
@@ -254,11 +272,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -273,6 +291,8 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   mcl:
     runs-on: ubuntu-latest
@@ -281,11 +301,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -300,17 +320,19 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   node-14:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -325,17 +347,19 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   node-16:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -350,6 +374,8 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   npc:
     runs-on: ubuntu-latest
@@ -358,11 +384,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -377,6 +403,8 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   nps:
     runs-on: ubuntu-latest
@@ -385,11 +413,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -404,6 +432,8 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   sub-converter:
     runs-on: ubuntu-latest
@@ -412,11 +442,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -431,17 +461,19 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   ubuntu:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up QEMU
+      - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - name: Set up Docker Buildx
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -456,3 +488,5 @@ jobs:
           file: ${{ github.job }}/Dockerfile
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.job }}
           push: ${{ github.event_name != 'pull_request' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
