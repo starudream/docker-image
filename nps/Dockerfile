@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc-upx AS builder
 
-ARG NPS_VERSION=0.26.15
+ARG NPS_VERSION=0.26.16.1
 
 RUN apk add --no-cache wget \
     && wget -qO /tmp/nps.tar.gz https://github.com/yisier/nps/releases/download/v${NPS_VERSION}/linux_amd64_server.tar.gz \

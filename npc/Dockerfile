@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc-upx AS builder
 
-ARG NPC_VERSION=0.26.15
+ARG NPC_VERSION=0.26.16.1
 
 RUN apk add --no-cache wget \
     && wget -qO /tmp/npc.tar.gz https://github.com/yisier/nps/releases/download/v${NPC_VERSION}/linux_amd64_client.tar.gz \
