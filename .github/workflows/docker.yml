@@ -28,6 +28,8 @@ jobs:
 
   alpine-glibc:
     runs-on: ubuntu-latest
+    needs:
+      - alpine
     steps:
       - uses: actions/checkout@v3
       - uses: docker/login-action@v2
@@ -46,6 +48,8 @@ jobs:
 
   alpine-glibc-upx:
     runs-on: ubuntu-latest
+    needs:
+      - alpine-glibc
     steps:
       - uses: actions/checkout@v3
       - uses: docker/login-action@v2
@@ -64,6 +68,8 @@ jobs:
 
   clash:
     runs-on: ubuntu-latest
+    needs:
+      - alpine-glibc-upx
     steps:
       - uses: actions/checkout@v3
       - uses: docker/login-action@v2
@@ -100,6 +106,8 @@ jobs:
 
   sub-converter:
     runs-on: ubuntu-latest
+    needs:
+      - alpine-glibc
     steps:
       - uses: actions/checkout@v3
       - uses: docker/login-action@v2
