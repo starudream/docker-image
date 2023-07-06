@@ -23,6 +23,8 @@ jobs:
           tags: ${{ env.DOCKER_USERNAME }}/${{ github.job }}
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          pull: true
+          push: true
           cache-from: type=gha,scope=${{ github.job }}
           cache-to: type=gha,mode=max,scope=${{ github.job }}
 
@@ -43,6 +45,8 @@ jobs:
           tags: ${{ env.DOCKER_USERNAME }}/${{ github.job }}
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          pull: true
+          push: true
           cache-from: type=gha,scope=${{ github.job }}
           cache-to: type=gha,mode=max,scope=${{ github.job }}
 
@@ -63,6 +67,8 @@ jobs:
           tags: ${{ env.DOCKER_USERNAME }}/${{ github.job }}
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          pull: true
+          push: true
           cache-from: type=gha,scope=${{ github.job }}
           cache-to: type=gha,mode=max,scope=${{ github.job }}
 
@@ -83,6 +89,8 @@ jobs:
           tags: ${{ env.DOCKER_USERNAME }}/${{ github.job }}
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          pull: true
+          push: true
           cache-from: type=gha,scope=${{ github.job }}
           cache-to: type=gha,mode=max,scope=${{ github.job }}
 
@@ -101,6 +109,8 @@ jobs:
           tags: ${{ env.DOCKER_USERNAME }}/${{ github.job }}
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          pull: true
+          push: true
           cache-from: type=gha,scope=${{ github.job }}
           cache-to: type=gha,mode=max,scope=${{ github.job }}
 
@@ -121,5 +131,7 @@ jobs:
           tags: ${{ env.DOCKER_USERNAME }}/${{ github.job }}
           context: ${{ github.job }}
           platforms: linux/amd64,linux/arm64
+          pull: true
+          push: true
           cache-from: type=gha,scope=${{ github.job }}
           cache-to: type=gha,mode=max,scope=${{ github.job }}
