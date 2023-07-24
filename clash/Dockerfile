@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc AS builder1
 
-ARG CLASH_PREMIUM_VERSION=2023.06.30
+ARG CLASH_PREMIUM_VERSION=2023.07.22
 
 RUN case $(apk --print-arch) in \
     'x86_64') \
