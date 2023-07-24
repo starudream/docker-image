@@ -1,4 +1,4 @@
-FROM starudream/alpine-glibc-upx AS builder1
+FROM starudream/alpine-glibc AS builder1
 
 ARG CLASH_PREMIUM_VERSION=2023.06.30
 
