@@ -31,6 +31,4 @@ nginx -g "daemon off;"' >/entrypoint.sh
 
 EXPOSE 80
 
-VOLUME /base
-
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]

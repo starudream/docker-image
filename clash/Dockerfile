@@ -37,6 +37,4 @@ COPY --from=builder2 /tmp/public /ui
 
 EXPOSE 7890 9090
 
-VOLUME /ui
-
 CMD /clash
