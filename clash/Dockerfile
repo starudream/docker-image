@@ -35,6 +35,4 @@ COPY --from=builder1 /tmp/Country.mmdb /root/.config/clash/Country.mmdb
 COPY --from=builder1 /tmp/clash /clash
 COPY --from=builder2 /tmp/public /ui
 
-EXPOSE 7890 9090
-
 CMD /clash

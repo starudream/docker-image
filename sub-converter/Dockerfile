@@ -15,20 +15,10 @@ RUN apk add --no-cache nginx pcre2 libcurl yaml-cpp libevent \
     && mkdir -p /etc/nginx/http.d/ /run/nginx \
     && chmod 755 -R /var/www/sub
 
-RUN echo $'server {\n\
-  listen 80 default_server;\n\
-  index index.html;\n\
-  location / {\n\
-    root /var/www/sub;\n\
-    location /sub { proxy_pass http://127.0.0.1:25500; }\n\
-    location /version { proxy_pass http://127.0.0.1:25500; }\n\
-  }\n\
-}' >/etc/nginx/http.d/default.conf
+COPY nginx-default.conf /etc/nginx/http.d/default.conf
+COPY entrypoint.sh /entrypoint.sh
 
-RUN echo $'#!/bin/sh\n\
-nohup subconverter >/var/log/subconverter.log 2>&1 &\n\
-nginx -g "daemon off;"' >/entrypoint.sh
-
-EXPOSE 80
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+    CMD wget -qO /dev/null http://localhost:25500/version || exit 1
 
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
