@@ -12,7 +12,6 @@ RUN case $(apk --print-arch) in \
     *) \
       echo "Unsupported architecture: $(apk --print-arch)" && exit 1; \
     esac \
-    && apk add --no-cache wget \
     && wget -qO /tmp/geoip.metadb https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb \
     && wget -qO /tmp/mihomo.gz https://github.com/MetaCubeX/mihomo/releases/download/v${MIHOMO_VERSION}/mihomo-linux-${__ARCH}-v${MIHOMO_VERSION}.gz \
     && gunzip /tmp/mihomo.gz && chmod +x /tmp/mihomo
@@ -21,8 +20,7 @@ FROM starudream/alpine-glibc AS builder2
 
 ARG XD_VERSION=1.134.0
 
-RUN apk add --no-cache wget \
-    && wget -qO /tmp/xd.tgz https://github.com/MetaCubeX/metacubexd/releases/download/v${XD_VERSION}/compressed-dist.tgz \
+RUN wget -qO /tmp/xd.tgz https://github.com/MetaCubeX/metacubexd/releases/download/v${XD_VERSION}/compressed-dist.tgz \
     && mkdir -p /tmp/dist && tar xzf /tmp/xd.tgz -C /tmp/dist
 
 FROM starudream/alpine-glibc
