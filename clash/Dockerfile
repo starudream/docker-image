@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc AS builder1
 
-ARG CLASH_PREMIUM_VERSION=2023.08.17
+ARG MIHOMO_VERSION=1.17.0
 
 RUN case $(apk --print-arch) in \
     'x86_64') \
@@ -13,26 +13,24 @@ RUN case $(apk --print-arch) in \
       echo "Unsupported architecture: $(apk --print-arch)" && exit 1; \
     esac \
     && apk add --no-cache wget \
-    && wget -qO /tmp/Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb \
-    && wget -qO /tmp/clash.gz https://github.com/Dreamacro/clash/releases/download/premium/clash-linux-${__ARCH}-${CLASH_PREMIUM_VERSION}.gz \
-    && gunzip /tmp/clash.gz && chmod +x /tmp/clash \
-    && upx /tmp/clash
+    && wget -qO /tmp/geoip.metadb https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb \
+    && wget -qO /tmp/mihomo.gz https://github.com/MetaCubeX/mihomo/releases/download/v${MIHOMO_VERSION}/mihomo-linux-${__ARCH}-v${MIHOMO_VERSION}.gz \
+    && gunzip /tmp/mihomo.gz && chmod +x /tmp/mihomo
 
 FROM starudream/alpine-glibc AS builder2
 
-ARG YACD_VERSION=0.3.8
+ARG XD_VERSION=1.134.0
 
-RUN apk add --no-cache wget xz \
-    && wget -qO /tmp/yacd.tar.xz https://github.com/haishanh/yacd/releases/download/v${YACD_VERSION}/yacd.tar.xz \
-    && xz -d /tmp/yacd.tar.xz \
-    && tar xf /tmp/yacd.tar -C /tmp
+RUN apk add --no-cache wget \
+    && wget -qO /tmp/xd.tgz https://github.com/MetaCubeX/metacubexd/releases/download/v${XD_VERSION}/compressed-dist.tgz \
+    && mkdir -p /tmp/dist && tar xzf /tmp/xd.tgz -C /tmp/dist
 
 FROM starudream/alpine-glibc
 
 WORKDIR /
 
-COPY --from=builder1 /tmp/Country.mmdb /root/.config/clash/Country.mmdb
-COPY --from=builder1 /tmp/clash /clash
-COPY --from=builder2 /tmp/public /ui
+COPY --from=builder1 /tmp/geoip.metadb /root/.config/mihomo/geoip.metadb
+COPY --from=builder1 /tmp/mihomo /mihomo
+COPY --from=builder2 /tmp/dist /ui
 
-CMD /clash
+CMD /mihomo
