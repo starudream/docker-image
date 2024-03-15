@@ -18,7 +18,7 @@ RUN case $(apk --print-arch) in \
 
 FROM starudream/alpine-glibc AS builder2
 
-ARG XD_VERSION=1.135.0
+ARG XD_VERSION=1.135.1
 
 RUN wget -qO /tmp/xd.tgz https://github.com/MetaCubeX/metacubexd/releases/download/v${XD_VERSION}/compressed-dist.tgz \
     && mkdir -p /tmp/dist && tar xzf /tmp/xd.tgz -C /tmp/dist
