@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.20
 
 RUN sed -i 's|dl-cdn.alpinelinux.org|mirrors.ustc.edu.cn|g' /etc/apk/repositories \
     && apk add --no-cache ca-certificates tzdata \
