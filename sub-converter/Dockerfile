@@ -19,7 +19,4 @@ RUN apk add --no-cache nginx pcre2 libcurl yaml-cpp libevent \
 COPY nginx-default.conf /etc/nginx/http.d/default.conf
 COPY entrypoint.sh /entrypoint.sh
 
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-    CMD wget -qO /dev/null http://localhost:25500/version || exit 1
-
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
