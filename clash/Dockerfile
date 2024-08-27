@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc AS builder1
 
-ARG MIHOMO_VERSION=1.18.5
+ARG MIHOMO_VERSION=1.18.7
 
 RUN case $(apk --print-arch) in \
     'x86_64') \
@@ -18,7 +18,7 @@ RUN case $(apk --print-arch) in \
 
 FROM starudream/alpine-glibc AS builder2
 
-ARG XD_VERSION=1.140.0
+ARG XD_VERSION=1.146.2
 
 RUN wget -qO /tmp/xd.tgz https://github.com/MetaCubeX/metacubexd/releases/download/v${XD_VERSION}/compressed-dist.tgz \
     && mkdir -p /tmp/dist && tar xzf /tmp/xd.tgz -C /tmp/dist
