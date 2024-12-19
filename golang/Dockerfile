@@ -1,7 +1,7 @@
-FROM golang:1.23-alpine3.20
+FROM golang:1.23-alpine3.21
 
 RUN apk add --no-cache ca-certificates tzdata make git upx \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && rm -rf /var/cache/apk/* \
-    && sed 's|dl-cdn.alpinelinux.org|mirrors.cernet.edu.cn|g' /etc/apk/repositories > /etc/apk/repositories-cernet \
+    && sed 's|dl-cdn.alpinelinux.org|mirror.nju.edu.cn|g' /etc/apk/repositories > /etc/apk/repositories-mirror \
     && go env -w CGO_ENABLED=0 GO111MODULE=on GOPROXY=https://goproxy.cn,https://goproxy.io,direct
