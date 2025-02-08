@@ -1,6 +1,6 @@
 FROM starudream/golang AS builder
 
-ARG TS_VERSION=1.78.1
+ARG TS_VERSION=1.80.0
 
 RUN cd /tmp && git clone --depth 1 -b v${TS_VERSION} https://github.com/tailscale/tailscale.git \
     && cd tailscale && CGO_ENABLED=0 go build -ldflags '-s -w' -o ./bin/derper tailscale.com/cmd/derper
