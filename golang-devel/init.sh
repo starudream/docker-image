@@ -75,14 +75,18 @@ chmod +x "$CUR_DIR"/.bin/*
 # --------------------------------------------------------------------------------
 
 MODULES=(
+    golang.org/x/tools/cmd/godoc
     golang.org/x/tools/cmd/stringer
     google.golang.org/protobuf/cmd/protoc-gen-go
     google.golang.org/grpc/cmd/protoc-gen-go-grpc
+    github.com/protoc-extensions/protoc-gen-go-json
     github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
     github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
     github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2
+    github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2
     github.com/protoc-extensions/protoc-gen-go-json
     github.com/envoyproxy/protoc-gen-validate
+    github.com/favadi/protoc-go-inject-tag
 )
 
 for module in "${MODULES[@]}"; do
