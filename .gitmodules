@@ -1,0 +1,4 @@
+[submodule "aistudio-proxy/AIstudioProxyAPI"]
+	path = aistudio-proxy/AIstudioProxyAPI
+	url = https://github.com/CJackHwang/AIstudioProxyAPI.git
+	branch = main
