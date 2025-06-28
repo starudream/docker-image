@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           cd dify/dify
+          git fetch --tags
           git checkout -b ${{ env.VERSION }} ${{ env.VERSION }}
           sed -i "s|basePath = ''|basePath = '/dify'|g" web/utils/var.ts
           sed -i "s|basePath: ''|basePath: '/dify'|g" web/utils/var-basePath.js
