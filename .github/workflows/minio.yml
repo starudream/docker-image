@@ -1,4 +1,4 @@
-name: Docker
+name: Docker-Minio
 
 permissions:
   packages: write
@@ -27,7 +27,7 @@ jobs:
         with:
           tags: starudream/minio:raw,ghcr.io/starudream/minio:raw
           context: minio
-          file: Dockerfile-raw
+          file: minio/Dockerfile-raw
           platforms: linux/amd64,linux/arm64
           pull: true
           push: true
@@ -53,7 +53,7 @@ jobs:
         with:
           tags: starudream/minio:ui,ghcr.io/starudream/minio:ui
           context: minio
-          file: Dockerfile-ui
+          file: minio/Dockerfile-ui
           platforms: linux/amd64,linux/arm64
           pull: true
           push: true
