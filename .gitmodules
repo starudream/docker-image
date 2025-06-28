@@ -2,3 +2,7 @@
 	path = aistudio-proxy/AIstudioProxyAPI
 	url = https://github.com/CJackHwang/AIstudioProxyAPI.git
 	branch = main
+[submodule "dify/dify"]
+	path = dify/dify
+	url = https://github.com/langgenius/dify.git
+	branch = main

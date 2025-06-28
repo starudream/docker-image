@@ -1,0 +1,38 @@
+name: docker-aistudio-proxy
+
+permissions:
+  packages: write
+
+on:
+  workflow_dispatch:
+  push: { paths: [ 'aistudio-proxy/**' ] }
+
+jobs:
+
+  aistudio-proxy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: docker/login-action@v3
+        with:
+          username: starudream
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: starudream
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          tags: starudream/aistudio-proxy,ghcr.io/starudream/aistudio-proxy
+          context: aistudio-proxy/AIstudioProxyAPI
+          file: aistudio-proxy/AIstudioProxyAPI/docker/Dockerfile
+          platforms: linux/amd64
+          pull: true
+          push: true
+          cache-from: type=gha,scope=${{ github.job }}
+          cache-to: type=gha,mode=max,scope=${{ github.job }}

@@ -1,0 +1,43 @@
+name: docker-dify
+
+permissions:
+  packages: write
+
+on:
+  workflow_dispatch:
+  push: { paths: [ 'dify/**' ] }
+
+jobs:
+
+  dify-web:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: 1.5.0
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          cd dify/dify
+          git checkout -b ${{ env.VERSION }} ${{ env.VERSION }}
+          sed -i "s|basePath = ''|basePath = '/dify'|g" web/utils/var.ts
+          sed -i "s|basePath: ''|basePath: '/dify'|g" web/utils/var-basePath.js
+          sed -i "s|assetPrefix: ''|assetPrefix: '/dify'|g" web/utils/var-basePath.js
+      - uses: docker/login-action@v3
+        with:
+          username: starudream
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: starudream
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          tags: starudream/dify-web:${{ env.VERSION }},ghcr.io/starudream/dify-web:${{ env.VERSION }}
+          context: dify/dify/web
+          platforms: linux/amd64
+          pull: true
+          push: true
+          cache-from: type=gha,scope=${{ github.job }}
+          cache-to: type=gha,mode=max,scope=${{ github.job }}
