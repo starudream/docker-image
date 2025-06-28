@@ -15,9 +15,10 @@ jobs:
       VERSION: 1.5.0
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - run: |
           cd dify/dify
-          git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
           git fetch --verbose --prune --tags
           git checkout -b ${{ env.VERSION }} ${{ env.VERSION }}
           sed -i "s|basePath = ''|basePath = '/dify'|g" web/utils/var.ts
