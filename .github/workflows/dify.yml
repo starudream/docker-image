@@ -17,7 +17,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           cd dify/dify
-          git fetch --verbose --prune --all
+          git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+          git fetch --verbose --prune --tags
           git checkout -b ${{ env.VERSION }} ${{ env.VERSION }}
           sed -i "s|basePath = ''|basePath = '/dify'|g" web/utils/var.ts
           sed -i "s|basePath: ''|basePath: '/dify'|g" web/utils/var-basePath.js
