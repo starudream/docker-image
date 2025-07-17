@@ -3,8 +3,17 @@
 set -e
 
 TARGET_ACR="registry.cn-shanghai.aliyuncs.com"
+SKOPEO_PATH=${SKOPEO_PATH:-}
+
+if [[ -z "$SKOPEO_PATH" ]]; then
+  echo ">> SKOPEO_PATH not found, skip sync"
+else
+  version=$($SKOPEO_PATH --version)
+  echo ">> SKOPEO_PATH: $SKOPEO_PATH, version: $version"
+fi
 
 while IFS= read -r image || [ -n "$image" ]; do
+
   if [[ -z "$image" || "$image" =~ ^# ]]; then
     continue
   fi
@@ -22,7 +31,10 @@ while IFS= read -r image || [ -n "$image" ]; do
   target="docker://$TARGET_ACR/starudream/${image//\//_}"
 
   echo ">> sync $source to $target"
-  skopeo copy --all --retry-times 3 "$source" "$target"
-  echo "<< sync $source to $target done"
+
+  if [[ -n "$SKOPEO_PATH" ]]; then
+    $SKOPEO_PATH copy --all --retry-times 3 "$source" "$target"
+    echo "<< sync $source to $target done"
+  fi
 
 done < sync-images.txt
