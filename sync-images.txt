@@ -1,6 +1,6 @@
 # starudream
 ghcr.io/starudream/clash
-ghcr.io/starudream/dify-web:1.6.0
+ghcr.io/starudream/dify-web:1.7.0
 ghcr.io/starudream/minio:ui
 ghcr.io/starudream/minio:raw
 ghcr.io/starudream/sub-converter
@@ -13,8 +13,8 @@ ghcr.io/starudream/aichat-proxy:develop
 ghcr.io/berriai/litellm:main-stable
 
 # dify
-langgenius/dify-api:1.6.0
-langgenius/dify-web:1.6.0
+langgenius/dify-api:1.7.0
+langgenius/dify-web:1.7.0
 langgenius/dify-sandbox:0.2.12
-langgenius/dify-plugin-daemon:0.1.3-local
+langgenius/dify-plugin-daemon:0.2.0-local
 langgenius/qdrant:v1.7.3

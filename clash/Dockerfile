@@ -18,10 +18,10 @@ RUN case $(apk --print-arch) in \
 
 FROM starudream/alpine-glibc AS builder2
 
-ARG XD_VERSION=1.187.1
+ARG ZASHBOARD_VERSION=1.99.0
 
-RUN wget -qO /tmp/xd.tgz https://github.com/MetaCubeX/metacubexd/releases/download/v${XD_VERSION}/compressed-dist.tgz \
-    && mkdir -p /tmp/dist && tar xzf /tmp/xd.tgz -C /tmp/dist
+RUN wget -qO /tmp/zashboard.zip https://github.com/Zephyruso/zashboard/releases/download/v${ZASHBOARD_VERSION}/dist.zip \
+    && mkdir -p /tmp && unzip /tmp/zashboard.zip -d /tmp
 
 FROM starudream/alpine-glibc
 
