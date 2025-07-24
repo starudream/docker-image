@@ -33,5 +33,5 @@ jobs:
       - name: sync
         run: |
           mkdir -p $(pwd)/bin
-          wget -q --show-progress -O $(pwd)/bin/skopeo https://github.com/lework/skopeo-binary/releases/download/${{ env.SKOPEO_VERSION }}/skopeo-linux-amd64 && chmod +x $(pwd)/bin/skopeo
+          wget -q --show-progress --progress dot:giga -O $(pwd)/bin/skopeo https://github.com/lework/skopeo-binary/releases/download/${{ env.SKOPEO_VERSION }}/skopeo-linux-amd64 && chmod +x $(pwd)/bin/skopeo
           SKOPEO_PATH=$(pwd)/bin/skopeo ./sync-images.sh
