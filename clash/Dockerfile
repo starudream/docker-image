@@ -1,10 +1,10 @@
 FROM starudream/alpine-glibc AS builder1
 
-ARG MIHOMO_VERSION=1.19.11
+ARG MIHOMO_VERSION=1.19.12
 
 RUN case $(apk --print-arch) in \
     'x86_64') \
-      export __ARCH='amd64-compatible'; \
+      export __ARCH='amd64-v1'; \
       ;; \
     'aarch64') \
       export __ARCH='arm64'; \

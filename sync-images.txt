@@ -8,13 +8,3 @@ ghcr.io/starudream/sub-converter
 ghcr.io/starudream/aichat-proxy-camoufox:develop
 ghcr.io/starudream/aichat-proxy-camoufox:20250712
 ghcr.io/starudream/aichat-proxy:develop
-
-# litellm
-ghcr.io/berriai/litellm:main-stable
-
-# dify
-langgenius/dify-api:1.7.0
-langgenius/dify-web:1.7.0
-langgenius/dify-sandbox:0.2.12
-langgenius/dify-plugin-daemon:0.2.0-local
-langgenius/qdrant:v1.7.3
