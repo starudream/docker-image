@@ -1,6 +1,6 @@
 # starudream
 ghcr.io/starudream/clash
-ghcr.io/starudream/dify-web:1.7.1-20f0238
+ghcr.io/starudream/dify-web:20f0238
 ghcr.io/starudream/minio:ui
 ghcr.io/starudream/minio:raw
 ghcr.io/starudream/sub-converter
