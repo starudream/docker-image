@@ -6,5 +6,5 @@ ghcr.io/starudream/minio:raw
 ghcr.io/starudream/sub-converter
 
 ghcr.io/starudream/aichat-proxy-camoufox:develop
-ghcr.io/starudream/aichat-proxy-camoufox:20250712
+ghcr.io/starudream/aichat-proxy-camoufox:20250808
 ghcr.io/starudream/aichat-proxy:develop
