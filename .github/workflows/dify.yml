@@ -12,7 +12,7 @@ jobs:
   dify-web:
     runs-on: ubuntu-latest
     env:
-      VERSION: 20f0238
+      VERSION: 1.7.2
     steps:
       - uses: actions/checkout@v4
         with:

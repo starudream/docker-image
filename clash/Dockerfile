@@ -18,7 +18,7 @@ RUN case $(apk --print-arch) in \
 
 FROM starudream/alpine-glibc AS builder2
 
-ARG ZASHBOARD_VERSION=1.99.0
+ARG ZASHBOARD_VERSION=1.101.1
 
 RUN wget -qO /tmp/zashboard.zip https://github.com/Zephyruso/zashboard/releases/download/v${ZASHBOARD_VERSION}/dist.zip \
     && mkdir -p /tmp && unzip /tmp/zashboard.zip -d /tmp
