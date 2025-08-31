@@ -1,10 +1,10 @@
 # starudream
 ghcr.io/starudream/clash
-ghcr.io/starudream/dify-web:1.7.2
+ghcr.io/starudream/dify-web:1.8.0
 ghcr.io/starudream/golang
 ghcr.io/starudream/golang-devel
-ghcr.io/starudream/minio:ui
-ghcr.io/starudream/minio:raw
+#ghcr.io/starudream/minio:ui
+#ghcr.io/starudream/minio:raw
 ghcr.io/starudream/sub-converter
 
 ghcr.io/starudream/aichat-proxy-camoufox:20250808
