@@ -1,6 +1,6 @@
 # starudream
 ghcr.io/starudream/clash
-ghcr.io/starudream/dify-web:1.8.0
+ghcr.io/starudream/dify-web:1.8.1
 ghcr.io/starudream/golang
 ghcr.io/starudream/golang-devel
 #ghcr.io/starudream/minio:ui
