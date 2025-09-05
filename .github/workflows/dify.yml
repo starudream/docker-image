@@ -21,9 +21,7 @@ jobs:
           cd dify/dify
           git fetch --verbose --prune --tags
           git checkout -b ${{ env.VERSION }} ${{ env.VERSION }}
-          sed -i "s|basePath = ''|basePath = '/dify'|g" web/utils/var.ts
-          sed -i "s|basePath: ''|basePath: '/dify'|g" web/utils/var-basePath.js
-          sed -i "s|assetPrefix: ''|assetPrefix: '/dify'|g" web/utils/var-basePath.js
+          sed -i 's|NEXT_PUBLIC_BASE_PATH=|NEXT_PUBLIC_BASE_PATH="/dify"|g' web/Dockerfile
       - uses: docker/login-action@v3
         with:
           username: starudream
