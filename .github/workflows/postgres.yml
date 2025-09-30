@@ -1,15 +1,15 @@
-name: docker-sub-converter
+name: docker-postgres
 
 permissions:
   packages: write
 
 on:
   workflow_dispatch:
-  push: { paths: [ 'sub-converter/**' ] }
+  push: { paths: [ 'postgres/**' ] }
 
 jobs:
 
-  sub-converter:
+  postgres-17:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,8 +26,9 @@ jobs:
       - uses: docker/setup-buildx-action@v3
       - uses: docker/build-push-action@v6
         with:
-          tags: starudream/${{ github.job }},ghcr.io/starudream/${{ github.job }}
-          context: ${{ github.job }}
+          tags: starudream/postgres:17,ghcr.io/starudream/postgres:17
+          context: postgres
+          file: postgres/Dockerfile-17
           platforms: linux/amd64,linux/arm64
           pull: true
           push: true

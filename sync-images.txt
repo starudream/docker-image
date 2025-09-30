@@ -5,6 +5,7 @@ ghcr.io/starudream/golang
 ghcr.io/starudream/golang-devel
 #ghcr.io/starudream/minio:ui
 #ghcr.io/starudream/minio:raw
+ghcr.io/starudream/postgres:17
 ghcr.io/starudream/sub-converter
 
 ghcr.io/starudream/aichat-proxy-camoufox:20250808
