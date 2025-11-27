@@ -11,7 +11,7 @@ rm -rf "$CUR_DIR"/.ver && mkdir -p "$CUR_DIR"/.ver
 
 # https://github.com/moby/moby/releases
 echo "-> docker"
-DOCKER_VERSION=$(curl -s https://api.github.com/repos/moby/moby/releases/latest | jq -r '.tag_name')
+DOCKER_VERSION=$(curl -s https://api.github.com/repos/moby/moby/releases/latest | jq -r '.name')
 echo "$DOCKER_VERSION" >"$CUR_DIR"/.ver/docker
 wget -qO "$CUR_DIR"/.tmp/docker.tar.gz https://download.docker.com/linux/static/stable/x86_64/docker-"${DOCKER_VERSION#v}".tgz
 tar -xzf "$CUR_DIR"/.tmp/docker.tar.gz -C "$CUR_DIR"/.tmp
