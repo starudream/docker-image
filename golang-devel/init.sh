@@ -83,7 +83,7 @@ MODULES=(
     github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
     github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2
     github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2
-    github.com/protoc-extensions/protoc-gen-go-json
+    github.com/protoc-contrib/protoc-gen-go-json
     github.com/envoyproxy/protoc-gen-validate
     github.com/favadi/protoc-go-inject-tag
 )
