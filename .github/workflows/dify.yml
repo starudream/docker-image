@@ -36,7 +36,8 @@ jobs:
       - uses: docker/build-push-action@v7
         with:
           tags: starudream/dify-web:${{ env.VERSION }},ghcr.io/starudream/dify-web:${{ env.VERSION }}
-          context: dify/dify/web
+          context: dify/dify
+          file: web/Dockerfile
           platforms: linux/amd64
           pull: true
           push: true
