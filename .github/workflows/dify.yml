@@ -22,6 +22,7 @@ jobs:
           git fetch --verbose --prune --tags
           git checkout -b ${{ env.VERSION }} ${{ env.VERSION }}
           sed -i 's|$NEXT_PUBLIC_BASE_PATH|/dify|g' web/Dockerfile
+          rm -f .git
       - uses: docker/login-action@v4
         with:
           username: starudream
