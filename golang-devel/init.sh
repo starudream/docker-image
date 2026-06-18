@@ -86,6 +86,13 @@ MODULES=(
     github.com/protoc-contrib/protoc-gen-go-json/cmd/protoc-gen-go-json
     github.com/envoyproxy/protoc-gen-validate
     github.com/favadi/protoc-go-inject-tag
+    github.com/swaggo/swag/cmd/swag
+    github.com/cweill/gotests/gotests
+    gorm.io/cli/gorm
+    gorm.io/gen/tools/gentool
+    github.com/nicksnyder/go-i18n/v2/goi18n
+    github.com/oligot/go-mod-upgrade
+    github.com/onsi/ginkgo/v2/ginkgo
 )
 
 for module in "${MODULES[@]}"; do

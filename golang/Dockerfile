@@ -1,4 +1,4 @@
-FROM golang:1.26-alpine3.22
+FROM golang:1.26-alpine3.24
 
 RUN apk add --no-cache ca-certificates tzdata bash make git upx curl unzip jq \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
