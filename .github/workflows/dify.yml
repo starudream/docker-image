@@ -22,7 +22,6 @@ jobs:
           git fetch --verbose --prune --tags
           git checkout -b ${{ env.VERSION }} ${{ env.VERSION }}
           sed -i 's|$NEXT_PUBLIC_BASE_PATH|/dify|g' web/Dockerfile
-          rm -f .git
       - uses: docker/login-action@v4
         with:
           username: starudream
@@ -38,7 +37,7 @@ jobs:
         with:
           tags: starudream/dify-web:${{ env.VERSION }},ghcr.io/starudream/dify-web:${{ env.VERSION }}
           context: dify/dify
-          file: web/Dockerfile
+          file: dify/dify/web/Dockerfile
           platforms: linux/amd64
           pull: true
           push: true
