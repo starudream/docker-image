@@ -1,6 +1,6 @@
 FROM starudream/alpine-glibc AS builder1
 
-ARG MIHOMO_VERSION=1.19.24
+ARG MIHOMO_VERSION=1.19.27
 
 RUN case $(apk --print-arch) in \
     'x86_64') \
@@ -18,7 +18,7 @@ RUN case $(apk --print-arch) in \
 
 FROM starudream/alpine-glibc AS builder2
 
-ARG ZASHBOARD_VERSION=3.5.1
+ARG ZASHBOARD_VERSION=3.10.1
 
 RUN wget -qO /tmp/zashboard.zip https://github.com/Zephyruso/zashboard/releases/download/v${ZASHBOARD_VERSION}/dist.zip \
     && mkdir -p /tmp && unzip /tmp/zashboard.zip -d /tmp
