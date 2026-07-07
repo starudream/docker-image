@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# Dify 1.15.0 public WebApp redirect hotfix
+# Dify 1.15.0 public WebApp timestamp hotfix
 #
 # 功能：
-#   1. 定位 web/app/(commonLayout)/hydration-boundary.tsx
-#   2. 备份原文件
-#   3. 为公开 WebApp 路由跳过 Console Profile/Workspace/System Features 预取
-#   4. 幂等执行，重复运行不会重复插入
+#   1. 为 useTimestamp 增加外部 timezone 参数，避免公开 WebApp 访问时查询 Console Profile。
+#   2. 让公开 WebApp chat wrapper 使用浏览器时区并传给 useChat。
+#   3. 幂等执行，重复运行不会重复插入。
 #
 # 使用：
-#   chmod +x patch-1.15.0.sh
 #   ./patch-1.15.0.sh /path/to/dify
 #
 # 如果当前目录就是 Dify 源码根目录：
@@ -20,10 +18,7 @@ set -Eeuo pipefail
 #   这是前端源码补丁。执行后必须重新构建 dify-web 镜像并替换 web 容器。
 
 DIFY_ROOT="${1:-$(pwd)}"
-TARGET_REL='web/app/(commonLayout)/hydration-boundary.tsx'
-TARGET="${DIFY_ROOT%/}/${TARGET_REL}"
 TIMESTAMP="$(date +%Y%m%d%H%M%S)"
-BACKUP="${TARGET}.bak.public-webapp.${TIMESTAMP}"
 
 log() {
   printf '[%s] %s\n' "$1" "$2"
@@ -34,118 +29,243 @@ die() {
   exit 1
 }
 
-[[ -f "$TARGET" ]] || die "未找到目标文件：$TARGET"
-
 log INFO "Dify 根目录：$DIFY_ROOT"
-log INFO "目标文件：$TARGET"
 
-if grep -q 'PUBLIC_WEBAPP_PATH_PREFIXES' "$TARGET"; then
-  log SKIP "补丁已存在，无需重复执行"
-  exit 0
-fi
-
-grep -q "const AUTH_REFRESH_PATH = '/auth/refresh'" "$TARGET" \
-  || die "未找到 AUTH_REFRESH_PATH，源码可能不是预期的 Dify 1.15.0 版本"
-
-grep -q 'export async function CommonLayoutHydrationBoundary' "$TARGET" \
-  || die "未找到 CommonLayoutHydrationBoundary 函数"
-
-cp -a "$TARGET" "$BACKUP"
-log BACKUP "$TARGET -> $BACKUP"
-
-python3 - "$TARGET" <<'PY'
+python3 - "$DIFY_ROOT" "$TIMESTAMP" <<'PY'
 from pathlib import Path
+import shutil
 import sys
 
-path = Path(sys.argv[1])
-content = path.read_text(encoding="utf-8")
+root = Path(sys.argv[1]).resolve()
+timestamp = sys.argv[2]
 
-constant_marker = """const AUTH_REFRESH_PATH = '/auth/refresh'
-"""
-
-constant_replacement = """const AUTH_REFRESH_PATH = '/auth/refresh'
-
-const PUBLIC_WEBAPP_PATH_PREFIXES = [
-  '/chat/',
-  '/completion/',
-  '/workflow/',
+targets = [
+    "web/hooks/use-timestamp.ts",
+    "web/app/components/base/chat/chat/hooks.ts",
+    "web/app/components/base/chat/chat-with-history/chat-wrapper.tsx",
+    "web/app/components/base/chat/embedded-chatbot/chat-wrapper.tsx",
 ]
 
-const isPublicWebAppPath = async () => {
-  const requestHeaders = await headers()
-  const pathname = requestHeaders.get(CURRENT_PATHNAME_HEADER) || `${basePath}/`
 
-  return PUBLIC_WEBAPP_PATH_PREFIXES.some(prefix =>
-    pathname.startsWith(prefix) || pathname.includes(`${basePath}${prefix}`),
-  )
+def log(level: str, message: str) -> None:
+    print(f"[{level}] {message}")
+
+
+def read(rel: str) -> str:
+    path = root / rel
+    if not path.is_file():
+        raise SystemExit(f"[ERROR] 未找到目标文件：{path}")
+    return path.read_text(encoding="utf-8")
+
+
+def write(rel: str, content: str) -> None:
+    path = root / rel
+    backup = path.with_name(f"{path.name}.bak.public-webapp.{timestamp}")
+    if not backup.exists():
+        shutil.copy2(path, backup)
+        log("BACKUP", f"{path} -> {backup}")
+    path.write_text(content, encoding="utf-8")
+    log("WRITE", str(path))
+
+
+def replace_once(content: str, old: str, new: str, rel: str) -> str:
+    if old not in content:
+        raise SystemExit(f"[ERROR] {rel} 未找到预期代码片段，源码可能不是预期的 Dify 1.15.0")
+    return content.replace(old, new, 1)
+
+
+for rel in targets:
+    read(rel)
+
+updates: list[tuple[str, str]] = []
+
+rel = "web/hooks/use-timestamp.ts"
+content = read(rel)
+if "type UseTimestampOptions" in content:
+    log("SKIP", f"{rel} 已包含 timezone 参数")
+else:
+    content = replace_once(
+        content,
+        """dayjs.extend(utc)
+dayjs.extend(timezone)
+
+const useTimestamp = () => {
+  const { data: timezone } = useQuery({
+    ...userProfileQueryOptions(),
+    select: data => data.profile.timezone ?? undefined,
+  })
+
+  const formatTime = useCallback((value: number, format: string) => {
+    return dayjs.unix(value).tz(timezone).format(format)
+  }, [timezone])
+
+  const formatDate = useCallback((value: string, format: string) => {
+    return dayjs(value).tz(timezone).format(format)
+  }, [timezone])
+""",
+        """dayjs.extend(utc)
+dayjs.extend(timezone)
+
+type UseTimestampOptions = {
+  timezone?: string
 }
-"""
 
-function_marker = """export async function CommonLayoutHydrationBoundary({ children }: { children: ReactNode }) {
-  const queryClient = getQueryClientServer()
-"""
+const getBrowserTimezone = () => {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone
+}
 
-function_replacement = """export async function CommonLayoutHydrationBoundary({ children }: { children: ReactNode }) {
-  // Public WebApp uses its own authentication flow and must not require
-  // a Dify Console account session.
-  if (await isPublicWebAppPath())
-    return <>{children}</>
+const useTimestamp = ({ timezone: timezoneOverride }: UseTimestampOptions = {}) => {
+  const { data: accountTimezone } = useQuery({
+    ...userProfileQueryOptions(),
+    select: data => data.profile.timezone ?? undefined,
+    enabled: timezoneOverride === undefined,
+  })
+  const resolvedTimezone = timezoneOverride ?? accountTimezone ?? getBrowserTimezone()
 
-  const queryClient = getQueryClientServer()
-"""
+  const formatTime = useCallback((value: number, format: string) => {
+    return dayjs.unix(value).tz(resolvedTimezone).format(format)
+  }, [resolvedTimezone])
 
-if "PUBLIC_WEBAPP_PATH_PREFIXES" in content:
-    print("[SKIP] Patch already applied")
+  const formatDate = useCallback((value: string, format: string) => {
+    return dayjs(value).tz(resolvedTimezone).format(format)
+  }, [resolvedTimezone])
+""",
+        rel,
+    )
+    updates.append((rel, content))
+
+rel = "web/app/components/base/chat/chat/hooks.ts"
+content = read(rel)
+if "type UseChatOptions" in content:
+    log("SKIP", f"{rel} 已包含 useChat options")
+else:
+    content = replace_once(
+        content,
+        """type SendCallback = {
+  onGetConversationMessages?: (conversationId: string, getAbortController: GetAbortController) => Promise<any>
+  onGetSuggestedQuestions?: (responseItemId: string, getAbortController: GetAbortController) => Promise<any>
+  onConversationComplete?: (conversationId: string) => void
+  isPublicAPI?: boolean
+}
+""",
+        """type SendCallback = {
+  onGetConversationMessages?: (conversationId: string, getAbortController: GetAbortController) => Promise<any>
+  onGetSuggestedQuestions?: (responseItemId: string, getAbortController: GetAbortController) => Promise<any>
+  onConversationComplete?: (conversationId: string) => void
+  isPublicAPI?: boolean
+}
+
+type UseChatOptions = {
+  timezone?: string
+}
+""",
+        rel,
+    )
+    content = replace_once(
+        content,
+        """  clearChatList?: boolean,
+  clearChatListCallback?: (state: boolean) => void,
+  initialConversationId?: string,
+) => {
+  const { t } = useTranslation()
+  const { formatTime } = useTimestamp()
+""",
+        """  clearChatList?: boolean,
+  clearChatListCallback?: (state: boolean) => void,
+  initialConversationId?: string,
+  options: UseChatOptions = {},
+) => {
+  const { t } = useTranslation()
+  const { formatTime } = useTimestamp({ timezone: options.timezone })
+""",
+        rel,
+    )
+    updates.append((rel, content))
+
+rel = "web/app/components/base/chat/chat-with-history/chat-wrapper.tsx"
+content = read(rel)
+if "const timezone = appSourceType === AppSourceType.webApp" in content:
+    log("SKIP", f"{rel} 已传递 WebApp timezone")
+else:
+    content = replace_once(
+        content,
+        """  const appSourceType = isInstalledApp ? AppSourceType.installedApp : AppSourceType.webApp
+""",
+        """  const appSourceType = isInstalledApp ? AppSourceType.installedApp : AppSourceType.webApp
+  const timezone = appSourceType === AppSourceType.webApp
+    ? Intl.DateTimeFormat().resolvedOptions().timeZone
+    : undefined
+""",
+        rel,
+    )
+    content = replace_once(
+        content,
+        """    taskId => stopChatMessageResponding('', taskId, appSourceType, appId),
+    clearChatList,
+    setClearChatList,
+  )
+""",
+        """    taskId => stopChatMessageResponding('', taskId, appSourceType, appId),
+    clearChatList,
+    setClearChatList,
+    undefined,
+    { timezone },
+  )
+""",
+        rel,
+    )
+    updates.append((rel, content))
+
+rel = "web/app/components/base/chat/embedded-chatbot/chat-wrapper.tsx"
+content = read(rel)
+if "const timezone = appSourceType === AppSourceType.webApp" in content:
+    log("SKIP", f"{rel} 已传递 WebApp timezone")
+else:
+    content = replace_once(
+        content,
+        """  const sendOnEnter = useMemo(() => {
+""",
+        """  const timezone = appSourceType === AppSourceType.webApp
+    ? Intl.DateTimeFormat().resolvedOptions().timeZone
+    : undefined
+
+  const sendOnEnter = useMemo(() => {
+""",
+        rel,
+    )
+    content = replace_once(
+        content,
+        """    taskId => stopChatMessageResponding('', taskId, appSourceType, appId),
+    clearChatList,
+    setClearChatList,
+  )
+""",
+        """    taskId => stopChatMessageResponding('', taskId, appSourceType, appId),
+    clearChatList,
+    setClearChatList,
+    undefined,
+    { timezone },
+  )
+""",
+        rel,
+    )
+    updates.append((rel, content))
+
+if not updates:
+    log("SKIP", "补丁已存在，无需重复执行")
     raise SystemExit(0)
 
-if constant_marker not in content:
-    raise SystemExit("[ERROR] Constant insertion marker not found")
+for rel, content in updates:
+    write(rel, content)
 
-if function_marker not in content:
-    raise SystemExit("[ERROR] Function insertion marker not found")
+for rel in targets:
+    content = read(rel)
+    if rel.endswith("use-timestamp.ts") and "enabled: timezoneOverride === undefined" not in content:
+        raise SystemExit(f"[ERROR] {rel} 补丁校验失败")
+    if rel.endswith("chat/hooks.ts") and "useTimestamp({ timezone: options.timezone })" not in content:
+        raise SystemExit(f"[ERROR] {rel} 补丁校验失败")
+    if rel.endswith("chat-wrapper.tsx") and "{ timezone }" not in content:
+        raise SystemExit(f"[ERROR] {rel} 补丁校验失败")
 
-content = content.replace(constant_marker, constant_replacement, 1)
-content = content.replace(function_marker, function_replacement, 1)
-
-path.write_text(content, encoding="utf-8")
-print(f"[WRITE] {path}")
+log("OK", "Dify 1.15.0 公开 WebApp 时间戳补丁已应用")
 PY
-
-log CHECK "检查补丁内容"
-
-grep -q "const PUBLIC_WEBAPP_PATH_PREFIXES" "$TARGET" \
-  || die "补丁校验失败：未找到 PUBLIC_WEBAPP_PATH_PREFIXES"
-
-grep -q "if (await isPublicWebAppPath())" "$TARGET" \
-  || die "补丁校验失败：未找到公开路由绕过逻辑"
-
-log OK "Dify 1.15.0 公开访问补丁已应用"
-
-cat <<EOF
-
-后续操作：
-
-1. 查看差异：
-   git diff -- '${TARGET_REL}'
-
-2. 重新构建前端镜像。通常在 Dify 源码根目录执行：
-   cd '${DIFY_ROOT}'
-   docker build -f web/Dockerfile -t dify-web:1.15.0-public-hotfix ./web
-
-   如果 Dockerfile 要求以仓库根目录作为构建上下文，则执行：
-   docker build -f web/Dockerfile -t dify-web:1.15.0-public-hotfix .
-
-3. 修改 docker-compose.yaml 中 web 服务：
-   image: dify-web:1.15.0-public-hotfix
-
-4. 仅重建 web 容器：
-   docker compose up -d --no-deps --force-recreate web
-
-5. 无痕窗口测试：
-   /chat/{app_code}
-   /completion/{app_code}
-   /workflow/{app_code}
-
-回滚：
-   cp -a '${BACKUP}' '${TARGET}'
-EOF
