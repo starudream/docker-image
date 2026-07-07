@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERSION: 1.15.0
-      DOCKER_TAG: 1.15.0-1
+      DOCKER_TAG: 1.15.0-2
     steps:
       - uses: actions/checkout@v6
         with:

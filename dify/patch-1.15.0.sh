@@ -75,12 +75,8 @@ const isPublicWebAppPath = async () => {
   const requestHeaders = await headers()
   const pathname = requestHeaders.get(CURRENT_PATHNAME_HEADER) || `${basePath}/`
 
-  const normalizedPathname = basePath && pathname.startsWith(basePath)
-    ? pathname.slice(basePath.length) || '/'
-    : pathname
-
   return PUBLIC_WEBAPP_PATH_PREFIXES.some(prefix =>
-    normalizedPathname.startsWith(prefix),
+    pathname.startsWith(prefix) || pathname.includes(`${basePath}${prefix}`),
   )
 }
 """
