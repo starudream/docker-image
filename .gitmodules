@@ -1,4 +1,0 @@
-[submodule "dify/dify"]
-	path = dify/dify
-	url = https://github.com/langgenius/dify.git
-	branch = main
