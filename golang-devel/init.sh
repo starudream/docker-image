@@ -75,25 +75,25 @@ chmod +x "$CUR_DIR"/.bin/*
 # --------------------------------------------------------------------------------
 
 MODULES=(
-    golang.org/x/tools/cmd/godoc
-    golang.org/x/tools/cmd/stringer
-    google.golang.org/protobuf/cmd/protoc-gen-go
-    google.golang.org/grpc/cmd/protoc-gen-go-grpc
-    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
-    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
-    github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2
-    github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2
-    github.com/protoc-contrib/protoc-gen-go-json/cmd/protoc-gen-go-json
-    github.com/envoyproxy/protoc-gen-validate
-    github.com/favadi/protoc-go-inject-tag
-    github.com/swaggo/swag/cmd/swag
-    github.com/cweill/gotests/gotests
-    entgo.io/ent/cmd/ent
+  golang.org/x/tools/cmd/godoc
+  golang.org/x/tools/cmd/stringer
+  google.golang.org/protobuf/cmd/protoc-gen-go
+  google.golang.org/grpc/cmd/protoc-gen-go-grpc
+  github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
+  github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
+  github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2
+  github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2
+  github.com/protoc-contrib/protoc-gen-go-json/cmd/protoc-gen-go-json
+  github.com/envoyproxy/protoc-gen-validate
+  github.com/favadi/protoc-go-inject-tag
+  github.com/swaggo/swag/cmd/swag
+  github.com/cweill/gotests/gotests
+  entgo.io/ent/cmd/ent
 )
 
 for module in "${MODULES[@]}"; do
-    echo "-> $module"
-    CGO_ENABLED=0 go install "$module@latest"
+  echo "-> $module"
+  CGO_ENABLED=0 go install "$module@latest"
 done
 
 chmod +x "$CUR_DIR"/bin/*
