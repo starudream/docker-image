@@ -1,0 +1,13 @@
+network:
+  interface: 0.0.0.0
+  websocket_port: 8443
+  ssl:
+    pem_certificate: ${HOME}/.vnc/tls.crt
+    pem_key: ${HOME}/.vnc/tls.key
+    require_ssl: true
+
+logging:
+  level: 30
+
+command_line:
+  prompt: false
