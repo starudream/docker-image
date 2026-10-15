@@ -7,6 +7,7 @@ RUN apk add --no-cache ca-certificates tzdata bash make git upx curl unzip jq &&
 FROM starudream/golang
 
 COPY --from=builder /go/.bin/ /usr/local/bin/
+COPY --from=builder /go/.include/ /usr/local/include/
 COPY --from=builder /go/.ver/ /usr/local/bin/.ver/
 COPY --from=builder /go/bin/ /go/bin/
 

@@ -46,6 +46,8 @@ echo "$PROTOC_VERSION" >"$CUR_DIR"/.ver/protoc
 wget -qO "$CUR_DIR"/.tmp/protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/"$PROTOC_VERSION"/protoc-"${PROTOC_VERSION#v}"-linux-x86_64.zip
 unzip -q "$CUR_DIR"/.tmp/protoc.zip -d "$CUR_DIR"/.tmp
 cp -rf "$CUR_DIR"/.tmp/bin/protoc "$CUR_DIR"/.bin/
+mkdir -p "$CUR_DIR"/.include
+cp -rf "$CUR_DIR"/.tmp/include/. "$CUR_DIR"/.include/
 
 # https://github.com/bufbuild/buf/releases
 echo "-> buf"
