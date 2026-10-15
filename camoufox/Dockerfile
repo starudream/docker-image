@@ -3,6 +3,7 @@ FROM python:3.14.8-slim-bookworm
 ARG TARGETARCH
 
 ENV PATH=/opt/venv/bin:$PATH \
+    LANG=C.UTF-8 \
     HOME=/home/camoufox \
     DISPLAY=:0.0 \
     DISPLAY_WIDTH=1920 \
@@ -32,7 +33,9 @@ RUN set -eux; \
     esac; \
     apt-get update; \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      ca-certificates curl fluxbox openssl supervisor tzdata unzip x11-utils; \
+      ca-certificates curl fluxbox fontconfig fonts-noto-cjk openssl \
+      supervisor tzdata unzip x11-utils; \
+    fc-cache -f -s; \
     curl -fsSL --retry 3 \
       "https://github.com/kasmtech/KasmVNC/releases/download/v1.5.0/kasmvncserver_bookworm_1.5.0_${TARGETARCH}.deb" \
       -o /tmp/kasmvnc.deb; \
