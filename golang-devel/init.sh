@@ -63,34 +63,25 @@ wget -qO "$CUR_DIR"/.tmp/sqlc.zip https://github.com/sqlc-dev/sqlc/releases/down
 unzip -q "$CUR_DIR"/.tmp/sqlc.zip -d "$CUR_DIR"/.tmp
 cp -rf "$CUR_DIR"/.tmp/sqlc "$CUR_DIR"/.bin/
 
-# https://github.com/gotestyourself/gotestsum/releases
-echo "-> gotestsum"
-GOTESTSUM_VERSION=$(curl -s https://api.github.com/repos/gotestyourself/gotestsum/releases/latest | jq -r '.tag_name')
-echo "$GOTESTSUM_VERSION" >"$CUR_DIR"/.ver/gotestsum
-wget -qO "$CUR_DIR"/.tmp/gotestsum.tar.gz https://github.com/gotestyourself/gotestsum/releases/download/"$GOTESTSUM_VERSION"/gotestsum_"${GOTESTSUM_VERSION#v}"_linux_amd64.tar.gz
-tar -xzf "$CUR_DIR"/.tmp/gotestsum.tar.gz -C "$CUR_DIR"/.tmp
-cp -rf "$CUR_DIR"/.tmp/gotestsum "$CUR_DIR"/.bin/
-
-grep -r '' "$CUR_DIR"/.ver
 chmod +x "$CUR_DIR"/.bin/*
 
 # --------------------------------------------------------------------------------
 
 MODULES=(
-  golang.org/x/tools/cmd/godoc
-  golang.org/x/tools/cmd/stringer
-  google.golang.org/protobuf/cmd/protoc-gen-go
-  google.golang.org/grpc/cmd/protoc-gen-go-grpc
+  entgo.io/ent/cmd/ent
+  github.com/daixiang0/gci
+  github.com/favadi/protoc-go-inject-tag
   github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway
   github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
-  github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2
-  github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2
   github.com/protoc-contrib/protoc-gen-go-json/cmd/protoc-gen-go-json
-  github.com/envoyproxy/protoc-gen-validate
-  github.com/favadi/protoc-go-inject-tag
-  github.com/swaggo/swag/cmd/swag
-  github.com/cweill/gotests/gotests
-  entgo.io/ent/cmd/ent
+  github.com/wailsapp/wails/v2/cmd/wails
+  golang.org/x/tools/cmd/godoc
+  golang.org/x/tools/cmd/goimports
+  golang.org/x/tools/cmd/stringer
+  google.golang.org/grpc/cmd/protoc-gen-go-grpc
+  google.golang.org/protobuf/cmd/protoc-gen-go
+  gorm.io/cli/gorm
+  gotest.tools/gotestsum
 )
 
 for module in "${MODULES[@]}"; do
@@ -99,3 +90,9 @@ for module in "${MODULES[@]}"; do
 done
 
 chmod +x "$CUR_DIR"/bin/*
+
+for binary in "$CUR_DIR"/bin/*; do
+  go version -m "$binary" >"$CUR_DIR"/.ver/"${binary##*/}"
+done
+
+grep -r '' "$CUR_DIR"/.ver

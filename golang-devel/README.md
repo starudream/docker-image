@@ -47,42 +47,50 @@ Go 配置由基础镜像通过 `go env -w` 写入，可以通过环境变量覆�
 | `protoc`        | Protocol Buffers 编译器 | 最新 Release      |
 | `buf`           | Protocol Buffers 工具链 | 最新 Release      |
 | `sqlc`          | 从 SQL 生成类型安全代码 | 最新 Release      |
-| `gotestsum`     | Go 测试执行与报告       | 最新 Release      |
 
 镜像只安装 Docker CLI，不包含 Docker daemon；使用 Docker 命令时需要连接可用的 daemon。
 
 ### Go 安装工具
 
-以下工具由 `go install <module>@latest` 安装：
+以下 14 个工具由 `go install <module>@latest` 安装，统一使用 `CGO_ENABLED=0`。
 
 | 命令                      | 用途                                |
 |---------------------------|-------------------------------------|
 | `godoc`                   | Go 文档服务                         |
+| `goimports`               | 格式化 Go 代码并整理导入            |
 | `stringer`                | 生成枚举类型的字符串方法            |
+| `gci`                     | 按规则整理 Go 导入分组              |
 | `protoc-gen-go`           | 生成 Protocol Buffers Go 类型       |
 | `protoc-gen-go-grpc`      | 生成 gRPC Go 服务代码               |
 | `protoc-gen-grpc-gateway` | 生成 gRPC Gateway 代码              |
 | `protoc-gen-openapiv2`    | 生成 OpenAPI v2 定义                |
-| `protoc-gen-go-http`      | 生成 Kratos HTTP 服务代码           |
-| `protoc-gen-go-errors`    | 生成 Kratos 错误代码                |
 | `protoc-gen-go-json`      | 生成 Protocol Buffers JSON 辅助代码 |
-| `protoc-gen-validate`     | 生成 Protocol Buffers 校验代码      |
 | `protoc-go-inject-tag`    | 为生成的 Go 结构体注入标签          |
-| `swag`                    | 生成 Swagger 文档                   |
-| `gotests`                 | 生成 Go 测试代码                    |
+| `gotestsum`               | Go 测试执行与报告                   |
 | `ent`                     | Ent 代码生成工具                    |
+| `gorm`                    | GORM CLI 代码生成工具               |
+| `wails`                   | Wails v2 命令行工具                 |
+
+gotestsum 统一从 `gotest.tools/gotestsum` 安装，不再同时下载同名发布包。
+
+### 使用边界
+
+- **项目版本**：镜像预装工具使用构建时的最新版本；项目固定的插件版本仍以项目自身的安装命令为准。
+- **Wails**：仅提供 CLI，未安装 Node.js、GTK、WebKit 和桌面构建环境；完整应用构建仍需对应平台的依赖。
+- **CGO 与 race**：项目若需要编译 CGO 代码或使用 `-race`，需自行准备 C 编译工具链并显式启用 CGO。
 
 ### 安装路径与版本记录
 
 | 路径                                  | 内容                                                                          |
 |---------------------------------------|-------------------------------------------------------------------------------|
 | `/usr/local/bin/`                     | 发布包工具，位于 `PATH` 中                                                    |
-| `/usr/local/bin/.ver/`                | 8 个发布包工具的构建时版本记录，文件名与命令名一致                            |
+| `/usr/local/bin/.ver/`                | 7 个发布包工具的版本记录，以及 Go 安装工具的构建信息，文件名与命令名一致      |
 | `/go/bin/`                            | `go install` 安装的工具，位于 `PATH` 中                                       |
 | `/usr/local/include/google/protobuf/` | protoc 标准定义，包含 `timestamp.proto`、`empty.proto`、`descriptor.proto` 等 |
 
 protoc 会自动搜索 `/usr/local/include`，项目导入标准定义时无需再复制这些文件。
-版本记录目录不包含 Go 安装工具的版本；可使用 `go version -m /go/bin/<命令>` 查看其构建信息。
+Go 安装工具的记录来自 `go version -m`，包含主模块、依赖版本和构建设置；该操作只读取二进制元数据，不运行工具。
+例如，`/usr/local/bin/.ver/gotestsum` 记录 gotestsum 的构建信息。
 
 ## 使用方式
 
