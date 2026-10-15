@@ -14,7 +14,7 @@
 | [golang](./golang/Dockerfile)             | Go 1.27 / Alpine 3.24，预装常用构建工具             | `latest`                  | ![amd64 / arm64][multiarch-badge] | ![体积][golang-size]<br>![拉取次数][golang-pulls]             |
 | [golang-devel](./golang-devel/README.md)  | Go 开发与 CI 工具集，包含代码生成、检查及发布工具   | `latest`                  | ![amd64][amd64-badge]             | ![体积][golang-devel-size]<br>![拉取次数][golang-devel-pulls] |
 | [clash](./clash/Dockerfile)               | Mihomo 代理内核，附带 Zashboard 与 GeoIP 数据       | `latest`                  | ![amd64 / arm64][multiarch-badge] | ![体积][clash-size]<br>![拉取次数][clash-pulls]               |
-| [camoufox](./camoufox/README.md)          | 独立浏览器，提供 Playwright 接口与 KasmVNC Web 桌面 | `0.5.8`、`latest`（计划） | ![amd64 / arm64][multiarch-badge] | 待构建成功与发布                                              |
+| [camoufox](./camoufox/README.md)          | 独立浏览器，提供 Playwright 接口与 KasmVNC Web 桌面 | `1.0.0`、`latest`（计划） | ![amd64 / arm64][multiarch-badge] | 待构建成功与发布                                              |
 
 架构以工作流的构建配置为准；体积徽章展示 Docker Hub 上 `latest` 标签的 `amd64` 镜像体积，拉取次数为各镜像仓库的累计值。
 `alpine-glibc` 使用 `gcompat` 提供兼容能力，不包含完整的 glibc 发行环境。

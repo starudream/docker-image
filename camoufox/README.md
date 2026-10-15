@@ -12,20 +12,27 @@
 |--------------------|----------------------------------------|
 | Docker Hub（目标） | `starudream/camoufox`                  |
 | GHCR（目标）       | `ghcr.io/starudream/camoufox`          |
-| 标签（计划）       | `0.5.8`、`latest`                      |
+| 标签（计划）       | `1.0.0`、`latest`                      |
 | 架构（配置）       | `linux/amd64`、`linux/arm64`           |
 | 运行用户           | UID/GID `1000:1000`，用户名 `camoufox` |
 | 默认工作目录       | `/app`                                 |
 
-## 组件版本
+## 版本对应关系
 
-| 组件               | 版本                                   |
-|--------------------|----------------------------------------|
-| Python 基础镜像    | `3.14.8-slim-bookworm`                 |
-| Camoufox Python 包 | `0.5.8`                                |
-| Camoufox 浏览器    | `156.0.1-beta.36`，Python 包的配套构建 |
-| Playwright         | `1.62.0`                               |
-| KasmVNC            | `1.5.0`                                |
+镜像从 `1.0.0` 开始独立维护版本，不与 Camoufox Python 包或浏览器版本绑定。
+发布新版本时新增对应记录，保留已发布版本的依赖记录；`latest` 指向最新发布的镜像版本。
+
+| 镜像版本        | Python 基础镜像        | Camoufox Python 包 | Camoufox 浏览器   | Playwright | KasmVNC |
+|-----------------|------------------------|--------------------|-------------------|------------|---------|
+| `1.0.0`（计划） | `3.14.8-slim-bookworm` | `0.5.8`            | `156.0.1-beta.36` | `1.62.0`   | `1.5.0` |
+
+表中记录 Dockerfile 明确指定的组件版本。Fluxbox、Fontconfig、Noto CJK 等系统包由 Debian 软件源安装，精确版本以实际构建结果为准。
+
+版本递增规则：
+
+- **PATCH**：问题修复、兼容的依赖更新。
+- **MINOR**：新增功能或配置能力。
+- **MAJOR**：不兼容变化，例如改变客户端连接协议要求。
 
 构建阶段按架构下载 KasmVNC 和浏览器发布包并检查 SHA-256，同时预置指纹模型。
 启动时不安装软件或下载浏览器，默认禁用 GeoIP 查询和 uBlock Origin。
@@ -41,10 +48,10 @@ docker run -d --name camoufox \
   -p 127.0.0.1:3000:3000 \
   -p 127.0.0.1:8443:8443 \
   -e KASMVNC_PASSWORD \
-  starudream/camoufox:0.5.8
+  starudream/camoufox:1.0.0
 ```
 
-使用 GHCR 时，将镜像地址替换为 `ghcr.io/starudream/camoufox:0.5.8`。
+使用 GHCR 时，将镜像地址替换为 `ghcr.io/starudream/camoufox:1.0.0`。
 
 ### 服务接口
 
@@ -172,11 +179,11 @@ StorageState 不包含 Session Storage、扩展状态、页面或完整浏览器
 docker buildx build \
   --platform linux/amd64 \
   --load \
-  -t starudream/camoufox:0.5.8 \
+  -t starudream/camoufox:1.0.0 \
   camoufox
 ```
 
-升级时应一并核对 Camoufox Python 包、配套浏览器、SHA-256 校验值、Playwright 版本与工作流标签。
+升级时应按版本规则递增镜像版本，并一并核对 Camoufox Python 包、配套浏览器、SHA-256 校验值、Playwright 版本、工作流标签与版本对应关系。
 浏览器升级若改变 Playwright 主、次版本，客户端需要同步升级。
 
 ### 离线交付
@@ -185,8 +192,8 @@ docker buildx build \
 
 ```bash
 docker save \
-  -o camoufox-0.5.8-linux-amd64.tar \
-  starudream/camoufox:0.5.8
+  -o camoufox-1.0.0-linux-amd64.tar \
+  starudream/camoufox:1.0.0
 ```
 
 arm64 交付时将构建平台改为 `linux/arm64`，并使用对应归档文件名。
