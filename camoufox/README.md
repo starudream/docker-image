@@ -4,8 +4,7 @@
 
 [返回镜像列表](../README.md#镜像列表) · [Dockerfile](./Dockerfile) · [构建工作流](../.github/workflows/camoufox.yml)
 
-> `1.0.0` 已完成 `linux/amd64`、`linux/arm64` 构建并发布到 Docker Hub 与 GHCR。
-> `1.0.1` 为当前 Dockerfile 的待验证版本，尚未构建或发布。
+> `1.0.1` 已发布到 Docker Hub 和 GHCR，支持 `linux/amd64` 和 `linux/arm64`。两个仓库的 `latest` 均指向 `1.0.1`。
 
 ## 镜像与架构
 
@@ -13,7 +12,7 @@
 |--------------|----------------------------------------|
 | Docker Hub   | `starudream/camoufox`                  |
 | GHCR         | `ghcr.io/starudream/camoufox`          |
-| 已发布标签   | `1.0.0`、`latest`                      |
+| 已发布标签   | `1.0.0`、`1.0.1`、`latest`              |
 | 架构         | `linux/amd64`、`linux/arm64`           |
 | 运行用户     | UID/GID `1000:1000`，用户名 `camoufox` |
 | 默认工作目录 | `/app`                                 |
@@ -53,10 +52,10 @@ docker run -d --name camoufox \
   -p 127.0.0.1:3000:3000 \
   -p 127.0.0.1:8443:8443 \
   -e KASMVNC_PASSWORD \
-  starudream/camoufox:1.0.0
+  starudream/camoufox:1.0.1
 ```
 
-使用 GHCR 时，将镜像地址替换为 `ghcr.io/starudream/camoufox:1.0.0`。
+使用 GHCR 时，将镜像地址替换为 `ghcr.io/starudream/camoufox:1.0.1`。
 
 ### 服务接口
 
@@ -204,7 +203,7 @@ docker save \
 arm64 交付时将构建平台改为 `linux/arm64`，并使用对应归档文件名。
 固定镜像 digest 或记录归档校验值，以明确现场使用的版本；浏览器镜像交付后，业务程序可以独立更新。
 
-`1.0.1` 仍需验证双架构构建、Web 桌面、中文显示与输入、登录快照恢复、客户端连接及故障恢复。
+`1.0.1` 的容器启动、Web 桌面、中文显示与输入、登录快照恢复、客户端连接及故障恢复仍待验证。
 
 ## 参考资料
 

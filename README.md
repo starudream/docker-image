@@ -14,12 +14,12 @@
 | [golang](./golang/Dockerfile)             | Go 1.27 / Alpine 3.24，预装常用构建工具             | `latest`          | ![amd64 / arm64][multiarch-badge] | ![体积][golang-size]<br>![拉取次数][golang-pulls]             |
 | [golang-devel](./golang-devel/README.md)  | Go 开发与 CI 工具集，包含代码生成、检查及发布工具   | `latest`          | ![amd64][amd64-badge]             | ![体积][golang-devel-size]<br>![拉取次数][golang-devel-pulls] |
 | [clash](./clash/Dockerfile)               | Mihomo 代理内核，附带 Zashboard 与 GeoIP 数据       | `latest`          | ![amd64 / arm64][multiarch-badge] | ![体积][clash-size]<br>![拉取次数][clash-pulls]               |
-| [camoufox](./camoufox/README.md)          | 独立浏览器，提供 Playwright 接口与 KasmVNC Web 桌面 | `1.0.0`、`latest` | ![amd64 / arm64][multiarch-badge] | ![体积][camoufox-size]<br>![拉取次数][camoufox-pulls]         |
+| [camoufox](./camoufox/README.md)          | 独立浏览器，提供 Playwright 接口与 KasmVNC Web 桌面 | `1.0.1`、`latest` | ![amd64 / arm64][multiarch-badge] | ![体积][camoufox-size]<br>![拉取次数][camoufox-pulls]         |
 
 架构以工作流的构建配置为准；体积徽章展示 Docker Hub 上 `latest` 标签的 `amd64` 镜像体积，拉取次数为各镜像仓库的累计值。
 `alpine-glibc` 使用 `gcompat` 提供兼容能力，不包含完整的 glibc 发行环境。
 
-Camoufox `1.0.0` 已完成双架构构建并发布到两个镜像仓库。启动、中文显示及客户端连接等运行行为尚未验证。
+Camoufox `1.0.1` 已发布到 Docker Hub 和 GHCR，两个仓库的 `latest` 均指向该版本，支持 `linux/amd64` 和 `linux/arm64`。启动、中文显示及客户端连接等运行行为仍待验证。
 
 ## 拉取镜像
 
