@@ -1,4 +1,4 @@
-FROM python:3.14.8-slim-bookworm
+FROM python:3.14.10-slim-trixie
 
 ARG TARGETARCH
 
@@ -20,14 +20,14 @@ WORKDIR /app
 RUN set -eux; \
     case "$TARGETARCH" in \
       amd64) \
-        kasmvnc_sha256=770fd3df51510beecc89666879d82faf411276e68c6e11df612f736b891b5f71; \
+        kasmvnc_sha256=6ed957163275088a5ce52b525f82f145014e3289699d576ce26745a4249407f8; \
         camoufox_arch=x86_64; \
-        camoufox_sha256=72637885ee67c93466ad377831c647192f8f08fb5c6fd9279de1320b49dd2b53 \
+        camoufox_sha256=3f2eb1d0451fa58e45e43e55f5e6181565069791ae60c0574f0ceb1f01341c33 \
         ;; \
       arm64) \
-        kasmvnc_sha256=aa83a1a6c9069d1a02239988b07a3a2a082a433042b4d4ee2b9e9f6b2df9643c; \
+        kasmvnc_sha256=904615b506c517242f3da3ff2eacd349013fc8cdb2dc205e5e4dad4ec6f62fa9; \
         camoufox_arch=arm64; \
-        camoufox_sha256=8b5fd083721c807ee2a752265683482477105052fa0e21739388b527ae067c15 \
+        camoufox_sha256=60e25f6eb95e13d9ec655bc02913d51057e669cb31542e6ace9d2190ab5380af \
         ;; \
       *) echo "Unsupported architecture: $TARGETARCH" >&2; exit 1 ;; \
     esac; \
@@ -37,12 +37,12 @@ RUN set -eux; \
       supervisor tzdata unzip x11-utils; \
     fc-cache -f -s; \
     curl -fsSL --retry 3 \
-      "https://github.com/kasmtech/KasmVNC/releases/download/v1.5.0/kasmvncserver_bookworm_1.5.0_${TARGETARCH}.deb" \
+      "https://github.com/kasmtech/KasmVNC/releases/download/v1.5.2/kasmvncserver_debian_trixie_1.5.2_${TARGETARCH}.deb" \
       -o /tmp/kasmvnc.deb; \
     printf '%s  %s\n' "$kasmvnc_sha256" /tmp/kasmvnc.deb | sha256sum -c -; \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends /tmp/kasmvnc.deb; \
     curl -fsSL --retry 3 \
-      "https://github.com/daijro/camoufox/releases/download/v156.0.1-beta.36/camoufox-156.0.1-beta.36-lin.${camoufox_arch}.zip" \
+      "https://github.com/daijro/camoufox/releases/download/v158.0.1-beta.41/camoufox-158.0.1-beta.41-lin.${camoufox_arch}.zip" \
       -o /tmp/camoufox.zip; \
     printf '%s  %s\n' "$camoufox_sha256" /tmp/camoufox.zip | sha256sum -c -; \
     mkdir -p /opt/camoufox; \
@@ -55,7 +55,8 @@ RUN set -eux; \
 
 RUN set -eux; \
     python -m venv /opt/venv; \
-    pip install --no-cache-dir camoufox==0.5.8 playwright==1.62.0; \
+    pip install --no-cache-dir camoufox==0.5.9 playwright==1.62.0; \
+    pip check; \
     playwright install-deps firefox; \
     rm -rf /var/lib/apt/lists/*; \
     groupadd --gid 1000 camoufox; \

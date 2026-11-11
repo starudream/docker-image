@@ -4,7 +4,8 @@
 
 [返回镜像列表](../README.md#镜像列表) · [Dockerfile](./Dockerfile) · [构建工作流](../.github/workflows/camoufox.yml)
 
-> `1.0.0` 已完成 `linux/amd64`、`linux/arm64` 构建并发布到 Docker Hub 与 GHCR。容器启动、Web 桌面、中文显示、客户端连接及故障恢复尚未进行运行验证。
+> `1.0.0` 已完成 `linux/amd64`、`linux/arm64` 构建并发布到 Docker Hub 与 GHCR。
+> `1.0.1` 为当前 Dockerfile 的待验证版本，尚未构建或发布。
 
 ## 镜像与架构
 
@@ -12,7 +13,7 @@
 |--------------|----------------------------------------|
 | Docker Hub   | `starudream/camoufox`                  |
 | GHCR         | `ghcr.io/starudream/camoufox`          |
-| 标签         | `1.0.0`、`latest`                      |
+| 已发布标签   | `1.0.0`、`latest`                      |
 | 架构         | `linux/amd64`、`linux/arm64`           |
 | 运行用户     | UID/GID `1000:1000`，用户名 `camoufox` |
 | 默认工作目录 | `/app`                                 |
@@ -25,8 +26,12 @@
 | 镜像版本 | Python 基础镜像        | Camoufox Python 包 | Camoufox 浏览器   | Playwright | KasmVNC |
 |----------|------------------------|--------------------|-------------------|------------|---------|
 | `1.0.0`  | `3.14.8-slim-bookworm` | `0.5.8`            | `156.0.1-beta.36` | `1.62.0`   | `1.5.0` |
+| `1.0.1`  | `3.14.10-slim-trixie`   | `0.5.9`            | `158.0.1-beta.41` | `1.62.0`   | `1.5.2` |
 
 表中记录 Dockerfile 明确指定的组件版本。Fluxbox、Fontconfig、Noto CJK 等系统包由 Debian 软件源安装，精确版本以实际构建结果为准。
+
+`camoufox==0.5.9` 要求 `playwright<1.63`，因此镜像保留 Playwright `1.62.0`，现有 `1.62.x` 客户端版本要求不变。
+PyYAML、zstandard 和 orjson 在 Linux amd64、arm64 上均有 CPython 3.14 的 wheel，安装时无需编译这些依赖。
 
 版本递增规则：
 
@@ -179,7 +184,7 @@ StorageState 不包含 Session Storage、扩展状态、页面或完整浏览器
 docker buildx build \
   --platform linux/amd64 \
   --load \
-  -t starudream/camoufox:1.0.0 \
+  -t starudream/camoufox:1.0.1 \
   camoufox
 ```
 
@@ -192,16 +197,16 @@ docker buildx build \
 
 ```bash
 docker save \
-  -o camoufox-1.0.0-linux-amd64.tar \
-  starudream/camoufox:1.0.0
+  -o camoufox-1.0.1-linux-amd64.tar \
+  starudream/camoufox:1.0.1
 ```
 
 arm64 交付时将构建平台改为 `linux/arm64`，并使用对应归档文件名。
 固定镜像 digest 或记录归档校验值，以明确现场使用的版本；浏览器镜像交付后，业务程序可以独立更新。
 
-双架构构建与发布已通过 GitHub Actions 验证；Web 桌面、中文显示与输入、登录快照恢复、客户端连接及故障恢复仍待目标环境验证。
+`1.0.1` 仍需验证双架构构建、Web 桌面、中文显示与输入、登录快照恢复、客户端连接及故障恢复。
 
 ## 参考资料
 
 - [Playwright 官方远程容器示例](https://github.com/microsoft/playwright/blob/v1.62.0/docs/src/docker.md#remote-connection)
-- [KasmVNC 默认端口规则](https://github.com/kasmtech/KasmVNC/blob/v1.5.0/unix/vncserver#L2675)
+- [KasmVNC 默认端口规则](https://github.com/kasmtech/KasmVNC/blob/v1.5.2/unix/vncserver)
